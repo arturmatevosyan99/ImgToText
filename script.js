@@ -1,5 +1,9 @@
 var text_title = "I Love You";
-var words = text_title.split(" ")
+var words = text_title.split("")
+
+words = words.filter(function (str) {
+    return /\S/.test(str);
+});
 
 var imageLoader = document.getElementById('imageLoader');
 imageLoader.addEventListener('change', handleImage, false);
@@ -7,6 +11,8 @@ var canvas = document.getElementById('imageCanvas');
 var ctx = canvas.getContext('2d');
 var img = new Image();
 var imgData;
+var imgDataEdges;
+
 img.crossOrigin = "anonymous";
 
 
@@ -32,21 +38,24 @@ function DrawText() {
     // ctx.font = "50px 'Montserrat'";
     // ctx.fillText(text_title, 50, 50);
 }
-function DynamicText(img) {
-    // document.getElementById('name').addEventListener('keyup', function () {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //     DrawOverlay(img);
-    //     DrawText();
-    //     text_title = this.value;
-    //     ctx.fillText(text_title, 50, 50);
-    // });
-}
+
+document.getElementById('name').addEventListener('keyup', function () {
+   
+    text_title = this.value;
+    words = text_title.split("")
+
+    words = words.filter(function (str) {
+        return /\S/.test(str);
+    });
+
+});
+
 function getInfo(e) {
     imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 }
 function handleImage(e) {
     var reader = new FileReader();
-
+    imgData = 0
 
     reader.onload = function (event) {
         img.onload = function () {
@@ -59,7 +68,6 @@ function handleImage(e) {
         canvas.classList.add("show");
         DrawOverlay(img);
         DrawText();
-        DynamicText(img);
 
     }
     reader.readAsDataURL(e.target.files[0]);
@@ -79,10 +87,15 @@ function getImagePixelsColor() {
 
 
 
-    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    if (!imgData) {
+        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+
+
+
     ctx.fillStyle = "white"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
-    console.log(imgData.data);
+    // console.log(imgData.data);
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
     let i = 0
@@ -100,44 +113,70 @@ function getImagePixelsColor() {
             i += canvas.width * 4 / countOfText // 16000
 
             ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (bgcolor / 255) + ')';
-            console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+            //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
             ctx.textBaseline = 'middle';
             let word = words[Math.round(Math.random() * (words.length - 1))]
-            ctx.font = sizeOfWorld/word.length * 1.8 + "px 'Montserrat'";
+            ctx.font = sizeOfWorld / word.length * 1.8 + "px 'Montserrat'";
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
         }
-        //i -= canvas.width * 4 / countOfText
-        i += canvas.width * 4 * sizeOfWorld // 640000
+        i += canvas.width * 4 * (sizeOfWorld - 1)// 640000
 
     }
 
-
-}
-
-function getOptymalSize(word) {
-    length = word.length
-
+    edgeDetact()
 }
 
 
-// var img = new Image();
-// img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
-// var canvas = document.getElementById('canvas');
-// var ctx = canvas.getContext('2d');
-// img.onload = function() {
-//   ctx.drawImage(img, 0, 0);
-//   img.style.display = 'none';
-// };
-// var color = document.getElementById('color');
-// function pick(event) {
-//   var x = event.layerX;
-//   var y = event.layerY;
-//   var pixel = ctx.getImageData(x, y, 1, 1);
-//   var data = pixel.data;
-//   var rgba = 'rgba(' + data[0] + ', ' + data[1] +
-//              ', ' + data[2] + ', ' + (data[3] / 255) + ')';
-//   color.style.background =  rgba;
-//   color.textContent = rgba;
-// }
-// canvas.addEventListener('mousemove', pick);
+var fileUploadEl = document.getElementById('imageLoader'),
+    srcImgEl = document.getElementById('src-image')
+
+fileUploadEl.addEventListener("change", function (e) {
+    srcImgEl.src = URL.createObjectURL(e.target.files[0]);
+}, false);
+
+function edgeDetact() {
+    var canvasE = document.getElementById('imageCanvasforEgde');
+    var ctxE = canvasE.getContext('2d');
+    var src = cv.imread(srcImgEl); // load the image from <img>\
+    var dst = new cv.Mat();
+
+    cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+
+    cv.Canny(src, dst, 89, 90, 3, false); // You can try more different parameters
+    cv.imshow('imageCanvasforEgde', dst); // display the output to canvas
+
+
+    let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    imgDataEdges = ctxE.getImageData(0, 0, canvas.width, canvas.height).data;
+
+    for (let i = 0; i < imgDataEdges.length; i += 4) {
+        let red = imgDataEdges[i];
+        let green = imgDataEdges[i + 1];
+        let blue = imgDataEdges[i + 2];
+        // imgData.data[i + 3] = 255;
+        let bgcolor = imgDataEdges[i + 3];
+        //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+
+        if (red == 255 && green == 255 && blue == 255) {
+            imgData.data[i] = 0 //imgDataEdges[i]
+            imgData.data[i + 1] = 0 //imgDataEdges[i + 1]
+            imgData.data[i + 2] = 0 //imgDataEdges[i + 2]
+            imgData.data[i + 3] = imgDataEdges[i + 3]
+            // console.log("DONE");
+        }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+    //ctx.drawImage(imgData, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    src.delete(); // remember to free the memory
+    dst.delete();
+
+
+
+}
+// opencv loaded?
+window.onOpenCvReady = function () {
+    document.getElementById('loading-opencv-msg').remove();
+}

@@ -3,41 +3,60 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
-<body>
-    <h1>Overlay text on canvas image and save as base64</h1>
-    <div class="page-wrap">
-        <div class="controls">
-            <input class="controls__input" type="file" id="imageLoader" name="imageLoader" />
-            <label class="controls__label" for="name">First, choose an image.</label>
+<body class="centered-wrapper">
+    <div class="centered-content">
+
+        <h1 style="font-size: 25px;">Picture to Text</h1>
+        <p id="loading-opencv-msg">Loading the Opencv ...</p>
+        <div class="page-wrap">
+            <div class="controls">
+                <input class="controls__input" type="file" id="imageLoader" name="imageLoader" />
+                <label class="controls__label" for="name">First, choose an image.</label>
+                <hr>
+                <label class="controls__label" for="name">Overlay Text</label>
+                <br>
+                <input class="controls__input" id="name" type="text" value="" />
+            </div>
             <br>
-            <input class="controls__input" id="name" type="text" value="" />
-            <label class="controls__label" for="name">Overlay Text</label>
+
+
+
+            <div id="canvas-wrap" style="width: 400px; height: 400px;">
+                <div class="row-align">
+                    <img id="src-image" src="" alt="" width=400px height=400px visibility: hidden>
+
+                    <canvas style="display:block" id="imageCanvas">
+                        <canvas id="canvasID"></canvas>
+                    </canvas>
+                    <canvas style="display:none" id="imageCanvasforEgde">
+                        <canvas id="canvasID"></canvas>
+                    </canvas>
+                </div>
+            </div>
+
+            <br>
+            <button type="submit" onclick="getImagePixelsColor()">Convert</button>
+
+
+
+            <button type="submit" id="download">download</button>
+
+
         </div>
-        <br>
-        <div id="canvas-wrap" style="width: 400px; height: 400px;">
-            <canvas style="display:block" id="imageCanvas" width=400px height=400px>
-                <canvas id="canvasID"></canvas>
-            </canvas>
-        </div>
-        <br>
-        <button type="submit" onclick="getImagePixelsColor()">Test</button>
-        <button type="submit" onclick="getInfo()">info</button>
-        <button type="submit" onclick="ProcessImage()">ProcessImage</button>
-        
-        <button type="submit" id="download">download</button>
-        
-        
+
+
+        <script src="https://www.marvinj.org/releases/marvinj-0.9.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/wallat/compiled-opencvjs/v4.2.0/opencv.js" async
+            onload="onOpenCvReady();" type="text/javascript"></script>
+        <script src="script.js"></script>
     </div>
-
-
-    <script src="https://www.marvinj.org/releases/marvinj-0.9.js"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>
