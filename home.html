@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://wordpix.org/text2image/ -->
+<html lang="en">
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Text 2 Image</title>
+   <link href="./home_files/css" rel="stylesheet" type="text/css">
+   <style>
+      table {
+         border-collapse: collapse;
+         border: 2px solid #AADDFF;
+      }
+
+      td,
+      th {
+         border-bottom: 1px solid #AADDFF;
+         padding: 1px;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div style="text-align:center;">
+      <h1>Text 2 Image</h1>
+   </div>
+   <p>
+   </p>
+   <form action="https://wordpix.org/text2image/" method="post" name="inputform">
+      <table>
+         <tbody>
+            <tr>
+               <td>Enter text:</td>
+               <td>
+                  <textarea id="inputtext" name="inputtext" rows="3" cols="40" style="vertical-align:middle;"
+                     autofocus=""></textarea>
+                  <input value="Generate" type="button"
+                     style="width:100%;height:100%;max-width:90px;white-space:normal;vertical-align:middle;"
+                     onclick="generate()">
+                  <!-- <button type="submit" onclick="getImagePixelsColor()">Generate</button>          -->
+               </td>
+            </tr>
+            <tr>
+               <td>Image:</td>
+               <td><input type="file" id="imageLoader" name="imageLoader"></td>
+            </tr>
+            <tr>
+
+               <td>Generate image in this style:</td>
+               <td>
+                  <select name="style">
+                     <option value="style1">Style 1</option>
+                     <option value="style2">Style 2</option>
+                     <option value="style3">Style 3</option>
+                     <option value="style4">Style 4</option>
+                  </select> See samples below
+               </td>
+            </tr>
+            <tr>
+               <td>Font:</td>
+               <td>
+                  <select name="font">
+                     <option value="Actor">Actor</option>
+                     <option value="Allerta Stencil" style="font-family:Allerta Stencil;font-size:14pt;">Allerta Stencil
+                     </option>
+                     <option value="Audiowide" style="font-family:Audiowide;font-size:14pt;">Audiowide</option>
+                     <option value="Barrio" style="font-family:Barrio;font-size:14pt;">Barrio</option>
+                     <option value="Cabin Sketch" style="font-family:Cabin Sketch;font-size:14pt;">Cabin Sketch</option>
+                     <option value="Codystar" style="font-family:Codystar;font-size:14pt;">Codystar</option>
+                  </select>
+                  style:
+                  <select name="fstyle">
+                     <option value="normal">Normal</option>
+                     <option value="bold" style="font-weight:bold">Bold</option>
+                     <option value="italic" style="font-style:italic">Italic</option>
+                     <option value="bold italic" style="font-weight:bold;font-style:italic">Bold Italic</option>
+                  </select>
+                  size: <input type="number" id="fontsize" min="0" max="100" value="0" style="width:3em;"><br>
+                  Font size 0 means use whatever size works best, including multiple sizes, as in style 1 and 2 below
+               </td>
+            </tr>
+            <tr>
+               <td>Generate in monochrome?:</td>
+               <td><input name="monochrome" type="radio" value="y" id="monochrome_yes">Yes, color: <input type="color"
+                     id="monochrome_color" value="#444444"><br>
+                  <input name="monochrome" type="radio" value="n" id="monochrome_no">No
+               </td>
+            </tr>
+            <tr>
+               <td>Highlight the edges?:</td>
+               <td>
+                  <input name="edges"  type="radio" value="y" id="edges_yes">Yes
+                  <input name="edges"  type="radio" value="n" id="edges_no">No
+               </td>
+            </tr>
+            <tr>
+               <td>Change input text to:</td>
+               <td><input name="case" type="radio" value="default" id="case_default">Default
+                  <input name="case" type="radio" value="lower" id="case_lower">lowercase
+                  <input name="case" type="radio" value="upper" id="case_upper">UPPERCASE
+               </td>
+            </tr>
+            <tr>
+               <td>Turn only part into text</td>
+               <td><input name="part" type="radio" value="default" id="part_default">Default (whole)
+                  <input name="part" type="radio" value="right_half" id="part_left_half">left half
+                  <input name="part" type="radio" value="left_half" id="part_right_half">right half (<a
+                     href="https://wordpix.org/text2image/images/right_half.jpg">See sample</a>)
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </form><br>
+   <table style="border:0px;">
+      <tbody>
+         <tr>
+            <td colspan="4" style="text-align:center;font-weight:bold;">Sample output Styles (click to zoom)</td>
+         </tr>
+         <tr>
+            <td><a href="./home_files/style1.jpg" style="border:2px blue solid;"><img src="./home_files/style1.jpg"
+                     height="200" alt="style 1"></a></td>
+            <td><a href="./home_files/style2.jpg" style="border:2px blue solid;"><img src="./home_files/style2.jpg"
+                     height="200" alt="style 2"></a></td>
+            <td><a href="./home_files/style3.jpg" style="border:2px blue solid;"><img src="./home_files/style3.jpg"
+                     height="200" alt="style 3"></a></td>
+            <td><a href="./home_files/style4.jpg" style="border:2px blue solid;"><img src="./home_files/style4.jpg"
+                     height="200" alt="style 4"></a></td>
+         </tr>
+         <tr>
+            <td style="text-align:center;">Style 1</td>
+            <td style="text-align:center;">Style 2</td>
+            <td style="text-align:center;">Style 3</td>
+            <td style="text-align:center;">Style 4</td>
+         </tr>
+
+
+      </tbody>
+   </table>
+   <p>
+   </p>
+   <div id="results">
+      <div id="canvas-wrap" style="width: 400px; height: 400px;">
+         <div class="row-align">
+            <img id="src-image" src="" alt="" width=400px height=400px visibility: hidden>
+
+            <canvas style="display:block" id="imageCanvas">
+               <canvas id="canvasID"></canvas>
+            </canvas>
+            <canvas style="display:none" id="imageCanvasforEgde">
+               <canvas id="canvasID"></canvas>
+            </canvas>
+         </div>
+      </div>
+
+   </div>
+   <p id="loading-opencv-msg">Loading the Opencv ...</p>
+   <!-- <script src="./home_files/text2image.js.Без названия"></script> -->
+
+   <script src="https://www.marvinj.org/releases/marvinj-0.9.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/wallat/compiled-opencvjs/v4.2.0/opencv.js" async onload="onOpenCvReady();"
+      type="text/javascript"></script>
+   <script src="script.js"></script>
+</body>
+
+</html>

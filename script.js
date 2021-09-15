@@ -39,7 +39,7 @@ function DrawText() {
     // ctx.fillText(text_title, 50, 50);
 }
 
-document.getElementById('name').addEventListener('keyup', function () {
+document.getElementById('inputtext').addEventListener('keyup', function () {
    
     text_title = this.value;
     words = text_title.split("")
@@ -76,9 +76,9 @@ function handleImage(e) {
 function convertToImage() {
     window.open(canvas.toDataURL('png'));
 }
-document.getElementById('download').onclick = function download() {
-    convertToImage();
-}
+// document.getElementById('download').onclick = function download() {
+//     convertToImage();
+// }
 
 
 
@@ -116,6 +116,7 @@ function getImagePixelsColor() {
             //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
             ctx.textBaseline = 'middle';
             let word = words[Math.round(Math.random() * (words.length - 1))]
+           // console.log( words )
             ctx.font = sizeOfWorld / word.length * 1.8 + "px 'Montserrat'";
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
@@ -124,7 +125,7 @@ function getImagePixelsColor() {
 
     }
 
-    edgeDetact()
+    
 }
 
 
@@ -157,14 +158,13 @@ function edgeDetact() {
         let blue = imgDataEdges[i + 2];
         // imgData.data[i + 3] = 255;
         let bgcolor = imgDataEdges[i + 3];
-        //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+       // console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
 
         if (red == 255 && green == 255 && blue == 255) {
             imgData.data[i] = 0 //imgDataEdges[i]
             imgData.data[i + 1] = 0 //imgDataEdges[i + 1]
             imgData.data[i + 2] = 0 //imgDataEdges[i + 2]
             imgData.data[i + 3] = imgDataEdges[i + 3]
-            // console.log("DONE");
         }
     }
 
@@ -179,4 +179,18 @@ function edgeDetact() {
 // opencv loaded?
 window.onOpenCvReady = function () {
     document.getElementById('loading-opencv-msg').remove();
+}
+
+
+function generate()
+{   
+    if (document.getElementById('edges_yes').checked) {
+        console.log("Yes");
+        getImagePixelsColor()
+        edgeDetact()
+    }
+    else{
+        console.log("No");
+        getImagePixelsColor()
+    }
 }
