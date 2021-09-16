@@ -62,9 +62,9 @@
             <tr>
                <td>Font:</td>
                <td>
-                  <select name="font">
+                  <select name="font" id = "font">
                      <option value="Actor">Actor</option>
-                     <option value="Allerta Stencil" style="font-family:Allerta Stencil;font-size:14pt;">Allerta Stencil
+                     <option value="Allerta Stencil" style="font-family:Allerta Stencil; font-size:14pt;">Allerta Stencil
                      </option>
                      <option value="Audiowide" style="font-family:Audiowide;font-size:14pt;">Audiowide</option>
                      <option value="Barrio" style="font-family:Barrio;font-size:14pt;">Barrio</option>
@@ -72,7 +72,7 @@
                      <option value="Codystar" style="font-family:Codystar;font-size:14pt;">Codystar</option>
                   </select>
                   style:
-                  <select name="fstyle">
+                  <select name="fstyle" id="fstyle">
                      <option value="normal">Normal</option>
                      <option value="bold" style="font-weight:bold">Bold</option>
                      <option value="italic" style="font-style:italic">Italic</option>
@@ -144,7 +144,7 @@
    <div id="results">
       <div id="canvas-wrap" style="width: 400px; height: 400px;">
          <div class="row-align">
-            <img id="src-image" src="" alt="" width=400px height=400px visibility: hidden>
+            <img id="src-image" style="opacity: 0.5;" src="" alt="" width=400px height=400px visibility: hidden>
 
             <canvas style="display:block" id="imageCanvas">
                <canvas id="canvasID"></canvas>

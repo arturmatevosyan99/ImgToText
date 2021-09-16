@@ -40,7 +40,7 @@ function DrawText() {
 }
 
 document.getElementById('inputtext').addEventListener('keyup', function () {
-   
+
     text_title = this.value;
     words = text_title.split("")
 
@@ -92,14 +92,14 @@ function getImagePixelsColor() {
     }
 
 
+    fillBackground()
 
-    ctx.fillStyle = "white"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
     // console.log(imgData.data);
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
     let i = 0
-    let countOfText = 40
+    let countOfText = 40 - document.getElementById("fontsize").value
+    console.log(countOfText);
     let sizeOfWorld = canvas.width / countOfText // 40
     for (let y = 0; y < countOfText; y++) {
         for (let x = 0; x < countOfText; x++) {
@@ -116,8 +116,15 @@ function getImagePixelsColor() {
             //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
             ctx.textBaseline = 'middle';
             let word = words[Math.round(Math.random() * (words.length - 1))]
-           // console.log( words )
-            ctx.font = sizeOfWorld / word.length * 1.8 + "px 'Montserrat'";
+            // console.log( words )
+            let select = document.getElementById('font');
+            let value = select.options[select.selectedIndex].value;
+    
+
+            let selectf = document.getElementById('fstyle');
+            let valuef = selectf.options[selectf.selectedIndex].value;
+         
+            ctx.font = valuef + ' ' +  (sizeOfWorld / word.length * 1.8) + 'px ' + value;
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
         }
@@ -125,7 +132,7 @@ function getImagePixelsColor() {
 
     }
 
-    
+
 }
 
 
@@ -158,7 +165,7 @@ function edgeDetact() {
         let blue = imgDataEdges[i + 2];
         // imgData.data[i + 3] = 255;
         let bgcolor = imgDataEdges[i + 3];
-       // console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+        // console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
 
         if (red == 255 && green == 255 && blue == 255) {
             imgData.data[i] = 0 //imgDataEdges[i]
@@ -181,15 +188,26 @@ window.onOpenCvReady = function () {
     document.getElementById('loading-opencv-msg').remove();
 }
 
+function opasoity() {
+    document.getElementById("src-image").style.opacity = "0.5";
+}
 
-function generate()
-{   
+function fillBackground() {
+    ctx.fillStyle = "white"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+}
+
+function generate() {
+    
+
     if (document.getElementById('edges_yes').checked) {
         console.log("Yes");
+
         getImagePixelsColor()
         edgeDetact()
     }
-    else{
+    else {
         console.log("No");
         getImagePixelsColor()
     }
