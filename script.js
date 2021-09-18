@@ -12,6 +12,7 @@ var ctx = canvas.getContext('2d');
 var img = new Image();
 var imgData;
 var imgDataEdges;
+var imgHalfData
 
 img.crossOrigin = "anonymous";
 
@@ -90,7 +91,7 @@ function getImagePixelsColor() {
     if (!imgData) {
         imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
-
+    
 
     fillBackground()
 
@@ -107,24 +108,33 @@ function getImagePixelsColor() {
             let red = imgData.data[i];
             let green = imgData.data[i + 1];
             let blue = imgData.data[i + 2];
-            // imgData.data[i + 3] = 255;
+            imgData.data[i + 3] = 255;
             let bgcolor = imgData.data[i + 3];
+            // if (red == 0 && green == 0 && blue == 0) {
+            //     red = 255 //imgDataEdges[i]
+            //     blue = 255 //imgDataEdges[i + 1]
+            //     green = 255 //imgDataEdges[i + 2]
 
+            // }
             i += canvas.width * 4 / countOfText // 16000
 
-            ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (bgcolor / 255) + ')';
-            //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+            if (document.getElementById('monochrome_yes').checked) {
+                ctx.fillStyle = document.getElementById('monochrome_color').value
+            }else{
+                ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (255) + ')';
+            }
+           //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
             ctx.textBaseline = 'middle';
             let word = words[Math.round(Math.random() * (words.length - 1))]
             // console.log( words )
             let select = document.getElementById('font');
             let value = select.options[select.selectedIndex].value;
-    
+
 
             let selectf = document.getElementById('fstyle');
             let valuef = selectf.options[selectf.selectedIndex].value;
-         
-            ctx.font = valuef + ' ' +  (sizeOfWorld / word.length * 1.8) + 'px ' + value;
+
+            ctx.font = valuef + ' ' + (sizeOfWorld / word.length * 1.8) + 'px ' + value;
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
         }
@@ -171,8 +181,10 @@ function edgeDetact() {
             imgData.data[i] = 0 //imgDataEdges[i]
             imgData.data[i + 1] = 0 //imgDataEdges[i + 1]
             imgData.data[i + 2] = 0 //imgDataEdges[i + 2]
-            imgData.data[i + 3] = imgDataEdges[i + 3]
+
         }
+        imgData.data[i + 3] = 100;
+
     }
 
     ctx.putImageData(imgData, 0, 0);
@@ -199,7 +211,35 @@ function fillBackground() {
 }
 
 function generate() {
+    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    if (document.getElementById("part_left_half").checked) {
+        
+        imgHalfData = ctx.getImageData(0, 0, canvas.width / 2, canvas.height);
+    }
+    else if(document.getElementById("part_right_half").checked)
+    {
+        imgHalfData = ctx.getImageData(canvas.width / 2, 0, canvas.width, canvas.height);
+    }
+    else{
+        imgHalfData;
+    }
     
+    if (document.getElementById('case_upper').checked) {
+        text_title = text_title.toUpperCase();
+        console.log(text_title);
+        words = text_title.split("")
+        words = words.filter(function (str) {
+            return /\S/.test(str);
+        });
+    }
+    else if(document.getElementById('case_lower').checked){
+        text_title = text_title.toLowerCase();
+        console.log(text_title);
+        words = text_title.split("")
+        words = words.filter(function (str) {
+            return /\S/.test(str);
+        });
+    }
 
     if (document.getElementById('edges_yes').checked) {
         console.log("Yes");
@@ -211,4 +251,13 @@ function generate() {
         console.log("No");
         getImagePixelsColor()
     }
+
+    if (document.getElementById("part_left_half").checked) {
+        ctx.putImageData(imgHalfData,0,0)
+    }
+    else if(document.getElementById("part_right_half").checked)
+    {
+        ctx.putImageData(imgHalfData,canvas.width/2, 0)
+    }
+    
 }
