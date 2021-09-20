@@ -214,11 +214,11 @@ function fillBackground() {
 }
 
 function generate() {
-    if (this.value == "") {
+    if (document.getElementById('inputtext').value == "") {
         text_title = "Text2Img"
     }
     else{
-        text_title = this.value;
+        text_title = document.getElementById('inputtext').value;
     }
     words = text_title.split("")
 
