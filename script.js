@@ -1,4 +1,4 @@
-var text_title = "I Love You";
+var text_title = "Text2Img";
 var words = text_title.split("")
 
 words = words.filter(function (str) {
@@ -42,7 +42,12 @@ function DrawText() {
 
 document.getElementById('inputtext').addEventListener('keyup', function () {
 
-    text_title = this.value;
+    if (this.value == "") {
+        text_title = "Text2Img"
+    }
+    else{
+        text_title = this.value;
+    }
     words = text_title.split("")
 
     words = words.filter(function (str) {
@@ -61,7 +66,8 @@ function handleImage(e) {
     reader.onload = function (event) {
         img.onload = function () {
             canvas.width = 400;
-            canvas.height = 400;
+            canvas.height = 400/img.width * img.height;
+           
             ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
         }
         img.src = event.target.result;
@@ -102,7 +108,7 @@ function getImagePixelsColor() {
     let countOfText = 40 - document.getElementById("fontsize").value
     console.log(countOfText);
     let sizeOfWorld = canvas.width / countOfText // 40
-    for (let y = 0; y < countOfText; y++) {
+    for (let y = 0; y < countOfText * canvas.height/canvas.width; y++) {
         for (let x = 0; x < countOfText; x++) {
 
             let red = imgData.data[i];
@@ -183,12 +189,12 @@ function edgeDetact() {
             imgData.data[i + 2] = 0 //imgDataEdges[i + 2]
 
         }
-        imgData.data[i + 3] = 100;
+        imgData.data[i + 3] = 255;
 
     }
 
     ctx.putImageData(imgData, 0, 0);
-    //ctx.drawImage(imgData, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+    // ctx.drawImage(imgData, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
     src.delete(); // remember to free the memory
     dst.delete();
 
@@ -200,9 +206,6 @@ window.onOpenCvReady = function () {
     document.getElementById('loading-opencv-msg').remove();
 }
 
-function opasoity() {
-    document.getElementById("src-image").style.opacity = "0.5";
-}
 
 function fillBackground() {
     ctx.fillStyle = "white"
