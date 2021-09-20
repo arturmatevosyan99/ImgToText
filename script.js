@@ -214,6 +214,18 @@ function fillBackground() {
 }
 
 function generate() {
+    if (this.value == "") {
+        text_title = "Text2Img"
+    }
+    else{
+        text_title = this.value;
+    }
+    words = text_title.split("")
+
+    words = words.filter(function (str) {
+        return /\S/.test(str);
+    });
+    
     ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
     if (document.getElementById("part_left_half").checked) {
         
