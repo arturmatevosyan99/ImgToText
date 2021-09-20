@@ -256,16 +256,17 @@ function generate() {
         });
     }
 
-    if (document.getElementById('edges_yes').checked) {
-        console.log("Yes");
+    // if (document.getElementById('edges_yes').checked) {
+    //     console.log("Yes");
 
-        getImagePixelsColor()
-        edgeDetact()
-    }
-    else {
-        console.log("No");
-        getImagePixelsColor()
-    }
+    //     getImagePixelsColor()
+    //     edgeDetact()
+    // }
+    // else {
+    //     console.log("No");
+    //     getImagePixelsColor()
+    // }
+    getImagePixelsColor()
 
     if (document.getElementById("part_left_half").checked) {
         ctx.putImageData(imgHalfData,0,0)
