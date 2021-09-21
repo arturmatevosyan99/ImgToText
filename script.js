@@ -1,4 +1,4 @@
-var text_title = "Text2Img";
+var text_title = "text2img";
 var words = text_title.split("")
 
 words = words.filter(function (str) {
@@ -43,7 +43,7 @@ function DrawText() {
 document.getElementById('inputtext').addEventListener('keyup', function () {
 
     if (this.value == "") {
-        text_title = "Text2Img"
+        text_title = "text2img"
     }
     else{
         text_title = this.value;
@@ -105,9 +105,10 @@ function getImagePixelsColor() {
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
     let i = 0
-    let countOfText = 40 - document.getElementById("fontsize").value
+    let countOfText = 50 - document.getElementById("fontsize").value
     console.log(countOfText);
     let sizeOfWorld = canvas.width / countOfText // 40
+    let index = 0;
     for (let y = 0; y < countOfText * canvas.height/canvas.width; y++) {
         for (let x = 0; x < countOfText; x++) {
 
@@ -126,12 +127,22 @@ function getImagePixelsColor() {
 
             if (document.getElementById('monochrome_yes').checked) {
                 ctx.fillStyle = document.getElementById('monochrome_color').value
+                
+                let hex_code = document.getElementById('monochrome_color').value.split("");
+                let redm = parseInt(hex_code[1]+hex_code[2],16);
+                let greenm = parseInt(hex_code[3]+hex_code[4],16);
+                let bluem = parseInt(hex_code[5]+hex_code[6],16);
+
+                ctx.fillStyle = 'rgba(' + (red+redm)/2 + ',' + (green+greenm)/2 + ',' + (blue+bluem)/2 + ',' + (255) + ')';
+
             }else{
                 ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (255) + ')';
             }
            //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
             ctx.textBaseline = 'middle';
-            let word = words[Math.round(Math.random() * (words.length - 1))]
+            
+            let word = words[index]
+            index < words.length - 1 ? index++ : index = 0;
             // console.log( words )
             let select = document.getElementById('font');
             let value = select.options[select.selectedIndex].value;
@@ -140,7 +151,7 @@ function getImagePixelsColor() {
             let selectf = document.getElementById('fstyle');
             let valuef = selectf.options[selectf.selectedIndex].value;
 
-            ctx.font = valuef + ' ' + (sizeOfWorld / word.length * 1.8) + 'px ' + value;
+            ctx.font = valuef + ' ' + (sizeOfWorld / word.length * 1.5) + 'px ' + value;
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
         }
@@ -215,7 +226,7 @@ function fillBackground() {
 
 function generate() {
     if (document.getElementById('inputtext').value == "") {
-        text_title = "Text2Img"
+        text_title = "text2img"
     }
     else{
         text_title = document.getElementById('inputtext').value;
