@@ -133,7 +133,7 @@ function getImagePixelsColor() {
                 let greenm = parseInt(hex_code[3]+hex_code[4],16);
                 let bluem = parseInt(hex_code[5]+hex_code[6],16);
 
-                ctx.fillStyle = 'rgba(' + (red+redm)/2 + ',' + (green+greenm)/2 + ',' + (blue+bluem)/2 + ',' + (255) + ')';
+                ctx.fillStyle = 'rgba(' + (red + (red+redm)/2)/2 + ',' + (green + (green+greenm)/2) / 2 + ',' + (blue +(blue+bluem)/2 ) / 2 + ',' + (255) + ')';
 
             }else{
                 ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (255) + ')';
