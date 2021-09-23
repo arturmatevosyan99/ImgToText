@@ -99,13 +99,20 @@ function getImagePixelsColor() {
     }
     
 
-    fillBackground()
+    // fillBackground()
+    for (let i = 3; i < imgData.data.length; i+=4) {
+        
+        imgData.data[i] = 40;
+
+    }
+    ctx.putImageData(imgData,0,0);
+    
 
     // console.log(imgData.data);
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
     let i = 0
-    let countOfText = 50 - document.getElementById("fontsize").value
+    let countOfText = 50
     console.log(countOfText);
     let sizeOfWorld = canvas.width / countOfText // 40
     let index = 0;
@@ -143,15 +150,15 @@ function getImagePixelsColor() {
             
             let word = words[index]
             index < words.length - 1 ? index++ : index = 0;
-            // console.log( words )
             let select = document.getElementById('font');
             let value = select.options[select.selectedIndex].value;
-
-
+            
             let selectf = document.getElementById('fstyle');
-            let valuef = selectf.options[selectf.selectedIndex].value;
-
-            ctx.font = valuef + ' ' + (sizeOfWorld / word.length * 1.5) + 'px ' + value;
+            let valueF = selectf.options[selectf.selectedIndex].value;
+            
+            let valueS =  - document.getElementById("fontsize").value
+        
+            ctx.font = valueF + ' ' + (sizeOfWorld / word.length * 1.5 - valueS) + 'px ' + value;
 
             ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
         }

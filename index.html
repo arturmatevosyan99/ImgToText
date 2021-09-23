@@ -7,7 +7,7 @@
 
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Text 2 Image</title>
-   <link href="./home_files/css" rel="stylesheet" type="text/css">
+   <link href="./style.css" rel="stylesheet" type="text/css">
    <style>
       table {
          border-collapse: collapse;
@@ -35,8 +35,8 @@
             <tr>
                <td>Enter text:</td>
                <td>
-                  <textarea id="inputtext" placeholder="Text2Img" name="inputtext" rows="3" cols="40" style="vertical-align:middle;"
-                     autofocus=""></textarea>
+                  <textarea id="inputtext" placeholder="Text2Img" name="inputtext" rows="3" cols="40"
+                     style="vertical-align:middle;" autofocus=""></textarea>
                   <input value="Generate" type="button"
                      style="width:100%;height:100%;max-width:90px;white-space:normal;vertical-align:middle;"
                      onclick="generate()">
@@ -62,14 +62,13 @@
             <tr>
                <td>Font:</td>
                <td>
-                  <select name="font" id = "font">
+                  <select name="font" id="font">
                      <option value="Actor">Actor</option>
-                     <option value="Allerta Stencil" style="font-family:Allerta Stencil; font-size:14pt;">Allerta Stencil
-                     </option>
-                     <option value="Audiowide" style="font-family:Audiowide;font-size:14pt;">Audiowide</option>
-                     <option value="Barrio" style="font-family:Barrio;font-size:14pt;">Barrio</option>
-                     <option value="Cabin Sketch" style="font-family:Cabin Sketch;font-size:14pt;">Cabin Sketch</option>
-                     <option value="Codystar" style="font-family:Codystar;font-size:14pt;">Codystar</option>
+                     <option value="Verdana">Verdana</option>
+                     <option value="Times New Roman">Times New Roman</option>
+                     <option value="serif">serif</option>
+                     <option value="sans-serif">sans-serif</option>
+                     <option value="Courier New">Courier New</option>
                   </select>
                   style:
                   <select name="fstyle" id="fstyle">
@@ -145,7 +144,7 @@
       <div id="canvas-wrap">
          <div class="row-align">
             <!-- visibility: hidden -->
-            <img id="src-image"  src="" alt="" visibility: hidden>
+            <img id="src-image" src="" alt="" visibility: hidden>
 
             <canvas style="display:block" id="imageCanvas">
                <canvas id="canvasID"></canvas>
@@ -157,13 +156,10 @@
       </div>
 
    </div>
-   <p id="loading-opencv-msg">Loading the Opencv ...</p>
+   <!--  <p id="loading-opencv-msg">Loading the Opencv ...</p> -->
    <!-- <script src="./home_files/text2image.js.Без названия"></script> -->
 
-   <script src="https://www.marvinj.org/releases/marvinj-0.9.js"></script>
-   <script src="https://cdn.jsdelivr.net/gh/wallat/compiled-opencvjs/v4.2.0/opencv.js" async onload="onOpenCvReady();"
-      type="text/javascript"></script>
-   <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
