@@ -25,7 +25,6 @@ function DrawPlaceholder() {
         DrawText();
         DynamicText(img)
     };
-    //img.src = 'https://unsplash.it/400/400/?random';
 
 }
 function DrawOverlay(img) {
@@ -34,10 +33,7 @@ function DrawOverlay(img) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 function DrawText() {
-    // ctx.fillStyle = "black";
-    // ctx.textBaseline = 'middle';
-    // ctx.font = "50px 'Montserrat'";
-    // ctx.fillText(text_title, 50, 50);
+    return
 }
 
 document.getElementById('inputtext').addEventListener('keyup', function () {
@@ -45,7 +41,7 @@ document.getElementById('inputtext').addEventListener('keyup', function () {
     if (this.value == "") {
         text_title = "text2img"
     }
-    else{
+    else {
         text_title = this.value;
     }
     words = text_title.split("")
@@ -66,8 +62,8 @@ function handleImage(e) {
     reader.onload = function (event) {
         img.onload = function () {
             canvas.width = 400;
-            canvas.height = 400/img.width * img.height;
-           
+            canvas.height = 400 / img.width * img.height;
+
             ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
         }
         img.src = event.target.result;
@@ -83,9 +79,7 @@ function handleImage(e) {
 function convertToImage() {
     window.open(canvas.toDataURL('png'));
 }
-// document.getElementById('download').onclick = function download() {
-//     convertToImage();
-// }
+
 
 
 
@@ -97,26 +91,37 @@ function getImagePixelsColor() {
     if (!imgData) {
         imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
-    
 
-    // fillBackground()
-    for (let i = 3; i < imgData.data.length; i+=4) {
-        
-        imgData.data[i] = 40;
 
+
+
+
+    if (document.getElementById("background_color_no").checked) {
+        fillBackground()
     }
-    ctx.putImageData(imgData,0,0);
-    
+    else {
+        for (let i = 3; i < imgData.data.length; i += 4) {
 
-    // console.log(imgData.data);
+            imgData.data[i] = 50;
+
+        }
+        ctx.putImageData(imgData, 0, 0);
+    }
+
+
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
     let i = 0
-    let countOfText = 50
+    let mearge = 2
+    if (document.getElementById("CharSpace_yes").checked) {
+        mearge = 1
+    }
+
+    let countOfText = 50 * mearge
     console.log(countOfText);
-    let sizeOfWorld = canvas.width / countOfText // 40
+    let sizeOfWorld = canvas.width / countOfText * mearge
     let index = 0;
-    for (let y = 0; y < countOfText * canvas.height/canvas.width; y++) {
+    for (let y = 0; y < countOfText * canvas.height / canvas.width; y++) {
         for (let x = 0; x < countOfText; x++) {
 
             let red = imgData.data[i];
@@ -124,45 +129,40 @@ function getImagePixelsColor() {
             let blue = imgData.data[i + 2];
             imgData.data[i + 3] = 255;
             let bgcolor = imgData.data[i + 3];
-            // if (red == 0 && green == 0 && blue == 0) {
-            //     red = 255 //imgDataEdges[i]
-            //     blue = 255 //imgDataEdges[i + 1]
-            //     green = 255 //imgDataEdges[i + 2]
 
-            // }
-            i += canvas.width * 4 / countOfText // 16000
+            i += canvas.width * 4 / countOfText
 
             if (document.getElementById('monochrome_yes').checked) {
                 ctx.fillStyle = document.getElementById('monochrome_color').value
-                
+
                 let hex_code = document.getElementById('monochrome_color').value.split("");
-                let redm = parseInt(hex_code[1]+hex_code[2],16);
-                let greenm = parseInt(hex_code[3]+hex_code[4],16);
-                let bluem = parseInt(hex_code[5]+hex_code[6],16);
+                let redm = parseInt(hex_code[1] + hex_code[2], 16);
+                let greenm = parseInt(hex_code[3] + hex_code[4], 16);
+                let bluem = parseInt(hex_code[5] + hex_code[6], 16);
 
-                ctx.fillStyle = 'rgba(' + (red + (red+redm)/2)/2 + ',' + (green + (green+greenm)/2) / 2 + ',' + (blue +(blue+bluem)/2 ) / 2 + ',' + (255) + ')';
+                ctx.fillStyle = 'rgba(' + (red + (red + redm) / 2) / 2 + ',' + (green + (green + greenm) / 2) / 2 + ',' + (blue + (blue + bluem) / 2) / 2 + ',' + (255) + ')';
 
-            }else{
+            } else {
                 ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + (255) + ')';
             }
-           //console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
+
             ctx.textBaseline = 'middle';
-            
+
             let word = words[index]
             index < words.length - 1 ? index++ : index = 0;
             let select = document.getElementById('font');
             let value = select.options[select.selectedIndex].value;
-            
+
             let selectf = document.getElementById('fstyle');
             let valueF = selectf.options[selectf.selectedIndex].value;
-            
-            let valueS =  - document.getElementById("fontsize").value
-        
+
+            let valueS = - document.getElementById("fontsize").value
+
             ctx.font = valueF + ' ' + (sizeOfWorld / word.length * 1.5 - valueS) + 'px ' + value;
 
-            ctx.fillText(word, x * sizeOfWorld, y * sizeOfWorld);
+            ctx.fillText(word, x * sizeOfWorld / mearge, y * sizeOfWorld);
         }
-        i += canvas.width * 4 * (sizeOfWorld - 1)// 640000
+        i += canvas.width * 4 * (sizeOfWorld - 1)
 
     }
 
@@ -197,14 +197,13 @@ function edgeDetact() {
         let red = imgDataEdges[i];
         let green = imgDataEdges[i + 1];
         let blue = imgDataEdges[i + 2];
-        // imgData.data[i + 3] = 255;
+   
         let bgcolor = imgDataEdges[i + 3];
-        // console.log('rgba(' + red + ', ' + green + ', ' + blue + ',' + (bgcolor / 255.0) + ')');
-
+      
         if (red == 255 && green == 255 && blue == 255) {
-            imgData.data[i] = 0 //imgDataEdges[i]
-            imgData.data[i + 1] = 0 //imgDataEdges[i + 1]
-            imgData.data[i + 2] = 0 //imgDataEdges[i + 2]
+            imgData.data[i] = 0
+            imgData.data[i + 1] = 0 
+            imgData.data[i + 2] = 0 
 
         }
         imgData.data[i + 3] = 255;
@@ -212,7 +211,7 @@ function edgeDetact() {
     }
 
     ctx.putImageData(imgData, 0, 0);
-    // ctx.drawImage(imgData, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+
     src.delete(); // remember to free the memory
     dst.delete();
 
@@ -232,66 +231,58 @@ function fillBackground() {
 }
 
 function generate() {
-    if (document.getElementById('inputtext').value == "") {
-        text_title = "text2img"
+    if (!img.src && document.getElementById('inputtext').value == "") {
+        alert("Please upload an input image and enter text")
+        return
     }
-    else{
+    if (!img.src) {
+        alert("Please upload an input image")
+        return
+    }
+    if (document.getElementById('inputtext').value == "") {
+        alert("Please enter input text")
+        return
+    }
+    else {
         text_title = document.getElementById('inputtext').value;
     }
     words = text_title.split("")
 
-    words = words.filter(function (str) {
-        return /\S/.test(str);
-    });
-    
     ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
     if (document.getElementById("part_left_half").checked) {
-        
+
         imgHalfData = ctx.getImageData(0, 0, canvas.width / 2, canvas.height);
     }
-    else if(document.getElementById("part_right_half").checked)
-    {
+    else if (document.getElementById("part_right_half").checked) {
         imgHalfData = ctx.getImageData(canvas.width / 2, 0, canvas.width, canvas.height);
     }
-    else{
+    else {
         imgHalfData;
     }
-    
+
     if (document.getElementById('case_upper').checked) {
         text_title = text_title.toUpperCase();
         console.log(text_title);
         words = text_title.split("")
-        words = words.filter(function (str) {
-            return /\S/.test(str);
-        });
     }
-    else if(document.getElementById('case_lower').checked){
+    else if (document.getElementById('case_lower').checked) {
         text_title = text_title.toLowerCase();
         console.log(text_title);
         words = text_title.split("")
+    }
+    if (document.getElementById('WordsSpace_yes').checked) {
         words = words.filter(function (str) {
             return /\S/.test(str);
         });
     }
 
-    // if (document.getElementById('edges_yes').checked) {
-    //     console.log("Yes");
-
-    //     getImagePixelsColor()
-    //     edgeDetact()
-    // }
-    // else {
-    //     console.log("No");
-    //     getImagePixelsColor()
-    // }
     getImagePixelsColor()
 
     if (document.getElementById("part_left_half").checked) {
-        ctx.putImageData(imgHalfData,0,0)
+        ctx.putImageData(imgHalfData, 0, 0)
     }
-    else if(document.getElementById("part_right_half").checked)
-    {
-        ctx.putImageData(imgHalfData,canvas.width/2, 0)
+    else if (document.getElementById("part_right_half").checked) {
+        ctx.putImageData(imgHalfData, canvas.width / 2, 0)
     }
-    
+
 }
