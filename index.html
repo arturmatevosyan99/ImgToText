@@ -1,236 +1,1592 @@
 <!DOCTYPE html>
-<!-- saved from url=(0031)https://wordpix.org/text2image/ -->
 <html lang="en">
 
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Text 2 Image</title>
-   <link href="./style.css" rel="stylesheet" type="text/css">
-   <style>
-      table {
-         border-collapse: collapse;
-         border: 2px solid #AADDFF;
-      }
-
-      td,
-      th {
-         border-bottom: 1px solid #AADDFF;
-         padding: 1px;
-      }
-   </style>
+        button {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-   <div style="text-align:center;">
-      <h1>Text 2 Image</h1>
-   </div>
-   <p>
-   </p>
-   <form action="https://wordpix.org/text2image/" method="post" name="inputform">
-      <table>
-         <tbody>
-            <tr>
-               <td>Enter text:</td>
-               <td>
-                  <textarea id="inputtext" placeholder="Text2Img" name="inputtext" rows="3" cols="40"
-                     style="vertical-align:middle;" autofocus=""></textarea>
-                  <input value="Generate" type="button"
-                     style="width:100%;height:100%;max-width:90px;white-space:normal;vertical-align:middle;"
-                     onclick="generate()">
-                  <!-- <button type="submit" onclick="getImagePixelsColor()">Generate</button>          -->
-               </td>
-            </tr>
-            <tr>
-               <td>Image:</td>
-               <td><input type="file" id="imageLoader" name="imageLoader"></td>
-            </tr>
-            <!-- <tr>
+    <form action=""
+        style="margin: 0;padding: 0; border-radius: 25px; width: 70%; background-color: rgb(194, 191, 191); padding: 30px;">
+        <label for="materialType" style="margin-bottom: 10px;">Тип материала</label><br>
+        <select id="Product_Type" style="background-color: white; margin-top: 10px; margin-bottom: 10px;">
+            <option value="10789" selected="selected">Лаки</option>
+            <option value="190">Краска</option>
+            <option value="190">Клей, Жидкое стекло, Вспомогательные жидкости, Очистители</option>
+            <option value="65">Контактные жидкости</option>
+            <option value="186">Ремонтно-строительные материалы</option>
+            <option value="51">Гидроизоляционные материалы</option>
+            <option value="175">Грунтовки</option>
+            <option value="1709">Цветные кладочные смеси</option>
+            <option value="91">Плиточный клей</option>
+            <option value="26">Гипсокартон (ГКЛ, ГВЛ)</option>
+            <option value="120">Сухие смеси</option>
+            <option value="2343">Клей для пеноблока</option>
+            <option value="81">Шпатлевки</option>
+            <option value="223">Противоморозные и защитные средства для древесины</option>
+            <option value="2829">Гидроизоляции и грунтовки</option>
+            <option value="113">Наливные полы</option>
+            <option value="106">Сухая штукатурка (штукатурная смесь)</option>
+            <option value="2822">Сухие строительные смеси</option>
+            <option value="10830">Пропитка для древесины</option>
 
-               <td>Generate image in this style:</td>
-               <td>
-                  <select name="style">
-                     <option value="style1">Style 1</option>
-                     <option value="style2">Style 2</option>
-                     <option value="style3">Style 3</option>
-                     <option value="style4">Style 4</option>
-                  </select> See samples below
-               </td>
-            </tr> -->
-            <tr>
-               <td>Font:</td>
-               <td>
-                  <select name="font" id="font">
-                     <option value="Actor">Actor</option>
-                     <option value="Verdana">Verdana</option>
-                     <option value="Times New Roman">Times New Roman</option>
-                     <option value="serif">serif</option>
-                     <option value="sans-serif">sans-serif</option>
-                     <option value="Courier New">Courier New</option>
-                     <option value="Pinyon Script" style="font-family:'Pinyon Script';font-size:14pt;">Pinyon Script
-                     </option>
-                     <option value="Times" style="font-family:'Times';font-size:14pt;">Times</option>
-                     <option value="Verdana" style="font-family:'Verdana';font-size:14pt;">Verdana</option>
-                     <option value="Arial" style="font-family:'Arial';font-size:14pt;">Arial</option>
-                     <option value="Arial Black" style="font-family:'Arial Black';font-size:14pt;">Arial Black</option>
-                     <option value="Comic Sans MS" style="font-family:'Comic Sans MS';font-size:14pt;">Comic Sans MS
-                     </option>
-                     <option value="Courier New" style="font-family:'Courier New';font-size:14pt;">Courier New</option>
-                     <option value="Georgia" style="font-family:'Georgia';font-size:14pt;">Georgia</option>
-                     <option value="Impact" style="font-family:'Impact';font-size:14pt;">Impact</option>
-                     <option value="Lucida Console" style="font-family:'Lucida Console';font-size:14pt;">Lucida Console
-                     </option>
-                     <option value="Palatino" style="font-family:'Palatino';font-size:14pt;">Palatino</option>
-                     <option value="Tahoma" style="font-family:'Tahoma';font-size:14pt;">Tahoma</option>
-                     <option value="Trebuchet MS" style="font-family:'Trebuchet MS';font-size:14pt;">Trebuchet MS
-                     </option>
-                     <option value="Droid Serif" style="font-family:'Droid Serif';font-size:14pt;">Droid Serif</option>
-                     <option value="Special Elite" style="font-family:'Special Elite';font-size:14pt;">Special Elite
-                     </option>
-                     <option value="Actor" style="font-family:'Actor';font-size:14pt;">Actor</option>
-                     <option value="Quicksand" style="font-family:'Quicksand';font-size:14pt;">Quicksand</option>
-                     <option value="Poiret One" style="font-family:'Poiret One';font-size:14pt;">Poiret One</option>
-                     <option value="Pacifico" style="font-family:'Pacifico';font-size:14pt;">Pacifico</option>
-                     <option value="Gloria Hallelujah" style="font-family:'Gloria Hallelujah',cursive;font-size:14pt;">
-                        Gloria Hallelujah</option>
-                     <option value="Permanent Marker" style="font-family:'Permanent Marker',cursive;font-size:14pt;">
-                        Permanent Marker</option>
-                     <option value="Reenie Beanie" style="font-family:'Reenie Beanie',cursive;font-size:14pt;">Reenie
-                        Beanie</option>
-                     <option value="Audiowide" style="font-family:'Audiowide',cursive;font-size:14pt;">Audiowide
-                     </option>
-                     <option value="Barrio" style="font-family:'Barrio',cursive;font-size:14pt;">Barrio</option>
-                     <option value="Flavors" style="font-family:'Flavors',cursive;font-size:14pt;">Flavors</option>
-                     <option value="Londrina Sketch" style="font-family:'Londrina Sketch',cursive;font-size:14pt;">
-                        Londrina Sketch</option>
-                     <option value="Medula One" style="font-family:'Medula One',cursive;font-size:14pt;">Medula One
-                     </option>
-                     <option value="Allerta Stencil" style="font-family:'Allerta Stencil',cursive;font-size:14pt;">
-                        Allerta Stencil</option>
-                     <option value="Cabin Sketch" style="font-family:'Cabin Sketch',cursive;font-size:14pt;">Cabin
-                        Sketch</option>
-                     <option value="Codystar" style="font-family:'Codystar',cursive;font-size:14pt;">Codystar</option>
-                     <option value="Creepster" style="font-family:'Creepster',cursive;font-size:14pt;">Creepster
-                     </option>
-                     <option value="Emilys Candy" style="font-family:'Emilys Candy',cursive;font-size:14pt;">Emilys
-                        Candy</option>
-                     <option value="Fredericka the Great"
-                        style="font-family:'Fredericka the Great',cursive;font-size:14pt;">Fredericka the Great</option>
-                     <option value="Megrim" style="font-family:'Megrim',cursive;font-size:14pt;">Megrim</option>
-                     <option value="Monoton" style="font-family:'Monoton',cursive;font-size:14pt;">Monoton</option>
-                     <option value="UnifrakturMaguntia"
-                        style="font-family:'UnifrakturMaguntia',cursive;font-size:14pt;">UnifrakturMaguntia</option>
-                  </select>
-                  style:
-                  <select name="fstyle" id="fstyle">
-                     <option value="normal">Normal</option>
-                     <option value="bold" style="font-weight:bold">Bold</option>
-                     <option value="italic" style="font-style:italic">Italic</option>
-                     <option value="bold italic" style="font-weight:bold;font-style:italic">Bold Italic</option>
-                  </select>
-                  size: <input type="number" id="fontsize" min="0" max="100" value="0" style="width:3em;"><br>
-                  Font size 0 means use whatever size works best, including multiple sizes, as in style 1 and 2 below
-               </td>
-            </tr>
-            <tr>
-               <td>Generate in monochrome?:</td>
-               <td><input name="monochrome" type="radio" value="y" id="monochrome_yes">Yes, color: <input type="color"
-                     id="monochrome_color" value="#444444"><br>
-                  <input name="monochrome" type="radio" value="n" id="monochrome_no">No
-               </td>
-            </tr>
-            <tr>
-               <td>Strip spaces between the words:</td>
-               <td><input name="WordsSpace" type="radio" value="y" id="WordsSpace_yes">Yes
-                  <input name="WordsSpace" type="radio" value="n" id="WordsSpace_no">No
-               </td>
-            </tr>
-            <tr>
-               <td>Add spaces between the chatacters:</td>
-               <td><input name="CharSpace" type="radio" value="y" id="CharSpace_yes">Yes
-                  <input name="CharSpace" type="radio" value="n" id="CharSpace_no">No
-               </td>
-            </tr>
-            <tr>
-               <td>Color the background:</td>
-               <td><input name="background_color" type="radio" value="y" id="background_color_yes">Yes
-                  <input name="background_color" type="radio" value="n" id="background_color_no">No
-               </td>
-            </tr>
-            <!-- <tr>
-               <td>Highlight the edges?:</td>
-               <td>
-                  <input name="edges"  type="radio" value="y" id="edges_yes">Yes
-                  <input name="edges"  type="radio" value="n" id="edges_no">No
-               </td>
-            </tr> -->
-            <tr>
-               <td>Change input text to:</td>
-               <td><input name="case" type="radio" value="default" id="case_default">Default
-                  <input name="case" type="radio" value="lower" id="case_lower">lowercase
-                  <input name="case" type="radio" value="upper" id="case_upper">UPPERCASE
-               </td>
-            </tr>
-            <tr>
-               <td>Turn only part into text</td>
-               <td><input name="part" type="radio" value="default" id="part_default">Default (whole)
-                  <input name="part" type="radio" value="right_half" id="part_left_half">left half
-                  <input name="part" type="radio" value="left_half" id="part_right_half">right half (<a
-                     href="https://wordpix.org/text2image/images/right_half.jpg">See sample</a>)
-               </td>
-            </tr>
-         </tbody>
-      </table>
-   </form><br>
-   <table style="border:0px;">
-      <tbody>
-         <tr>
-            <td colspan="4" style="text-align:center;font-weight:bold;">Sample output Styles (click to zoom)</td>
-         </tr>
-         <tr>
-            <td><a href="./home_files/style1.jpg" style="border:2px blue solid;"><img src="./home_files/style1.jpg"
-                     height="200" alt="style 1"></a></td>
-            <td><a href="./home_files/style2.jpg" style="border:2px blue solid;"><img src="./home_files/style2.jpg"
-                     height="200" alt="style 2"></a></td>
-            <td><a href="./home_files/style3.jpg" style="border:2px blue solid;"><img src="./home_files/style3.jpg"
-                     height="200" alt="style 3"></a></td>
-            <td><a href="./home_files/style4.jpg" style="border:2px blue solid;"><img src="./home_files/style4.jpg"
-                     height="200" alt="style 4"></a></td>
-         </tr>
-         <tr>
-            <td style="text-align:center;">Style 1</td>
-            <td style="text-align:center;">Style 2</td>
-            <td style="text-align:center;">Style 3</td>
-            <td style="text-align:center;">Style 4</td>
-         </tr>
+        </select><br>
+        <label for="material">продукт</label><br>
+        <select id="Product" style="margin-bottom: 20px; background-color: white;">
+
+        </select>
+        <div style="margin-bottom: 10px;"><label for="">плошадь поверхности </label>
+            <input id="area" value="10"
+                style="width: 30px; padding: 0; padding-top: 0; padding-bottom: 0; background-color: white;"
+                type="text">
+            <label for=""> м² толшина слоя </label>
+            <input id="h" value="2"
+                style="width: 30px;  padding: 0; padding-top: 0; padding-bottom: 0; background-color: white;"
+                type="text">
+            <label for=""> мм </label>
+        </div>
+
+        <button type="button" id="button1" style="background-color: #FFCC01; padding: 10px 20px; border-radius: 5px;">
+            Рассчитать
+        </button>
 
 
-      </tbody>
-   </table>
-   <p>
-   </p>
-   <div id="results">
-      <div id="canvas-wrap">
-         <div class="row-align">
-            <!-- visibility: hidden -->
-            <img id="src-image" src="" alt="" visibility: hidden>
 
-            <canvas style="display:block" id="imageCanvas">
-               <canvas id="canvasID"></canvas>
-            </canvas>
-            <canvas style="display:none" id="imageCanvasforEgde">
-               <canvas id="canvasID"></canvas>
-            </canvas>
-         </div>
-      </div>
+    </form>
 
-   </div>
-   <!--  <p id="loading-opencv-msg">Loading the Opencv ...</p> -->
-   <!-- <script src="./home_files/text2image.js.Без названия"></script> -->
 
-   <script src="script.js"></script>
+    <form id="form2" action=""
+        style="padding-top: 20px; display: block; margin: 0;padding: 0; border-radius: 25px; width: 70%; background-color: rgb(194, 191, 191); padding: 30px; margin-top: 30px;">
+
+        <div class="input_container">
+            <span id="e_block" style="display:block;overflow:hidden;font-size:16px;">
+                <p class="hdp" style="font-weight: bold;">Расчет</p>
+                <br>На поверхность площадью
+                <span id="formArea" style="font-size:20px;font-weight:700;">10</span> м2 и толщиной слоя
+                <span id="formH" style="font-size:20px;font-weight:700;">2</span> мм требуется:
+                <span id="mass" style="font-size:20px;font-weight:700;">6</span> кг<br> <br>Стоимость
+                <span id="count" style="font-size:20px;">1</span> мешка весом
+                <span id="massPerUniq" style="font-size:20px;font-weight:700;">10</span> кг -
+                <span id="cost" style="font-size:20px;">820</span> руб.
+
+
+            </span>
+            <br><br>
+
+            <!-- <div class="item">
+                <p id="name">
+                    Товар из расчета
+                    <span>
+                        "Тип Продукта:
+                    </span>
+                    <span>
+                        <a href="#"> прадукт "</a>
+                    </span>
+                    цена
+                </p>
+            </div> -->
+        </div>
+        </div>
+
+
+
+    </form>
+
+
+
+    <script>
+        let type = [
+            ["Общий производитель", "КБС", "Marshall"],
+            ["Общий производитель", "Литокол", "Евролюкс", "Боларс", "Tikkurila", "Respect", "Marshall", "Dulux", "Dufa", "Alpina", "Alpa"],
+            ["Общий производитель", "Литокол", "Боларс", "Ареал", "WD-40 Company", "Tytan", "Soudal", "Quelyd", "Pufas", "OSCAR", "Neomid", "Mapei", "Henkel", "Bostik"],
+            ["Общий производитель", "Боларс", "Ареал", "Knauf", "Alpina"],
+            ["Юнис", "Общий производитель", "Mapei", "Bergauf"],
+            [
+                "ТехноНиколь",
+                "Литокол",
+                "Боларс",
+                "Weber Vetonit",
+                "Plitonit",
+                "Perfekta",
+                "Mapei",
+                "Kreisel",
+                "Henkel",
+                "Glims",
+                "Bergauf",
+                "Alpa",
+            ],
+            [
+                "ЮНИС",
+                "Старатели",
+                "Общий производитель",
+                "Боларс",
+                "Knauf",
+                "Bergauf",
+            ],
+            [
+                "Основит",
+                "Ytong",
+                "Perfekta"
+            ],
+            [
+                "Старатели",
+
+                "Русеан",
+
+
+                "Основит",
+
+
+                "Общий производитель",
+
+
+                "МКУ",
+
+
+                "Литокол",
+
+
+                "Волма",
+
+
+                "Боларс",
+
+
+                "Weber Vetonit",
+
+
+                "Verfix",
+
+
+                "Sopro",
+
+
+                "Plitonit",
+
+
+                "Perfekta",
+
+
+                "Mapei",
+
+
+                "Kreisel",
+
+
+                "KolMix",
+
+
+                "Knauf",
+
+
+                "Henkel",
+
+
+                "Glims",
+
+
+                "Dauer",
+
+
+                "Bergauf",
+
+
+                "Baulux",
+            ],
+            ["Knauf"],
+            [
+                "ЦСМ",
+
+
+                "Строймикс",
+
+
+                "Русеан",
+
+
+                "Основит",
+
+                "Орион",
+
+                "Общий производитель",
+
+                "МКУ",
+
+                "Каменный цветок",
+
+
+                "Вилис",
+
+                "Perfekta",
+
+
+                "Oxiss",
+
+
+                "Mapei",
+
+
+                "KolMix",
+
+
+                "De Luxe",
+
+                "Aalborg White",
+
+            ],
+            [
+                "Юнис",
+                "Общий производитель",
+                "Волма",
+                "Боларс",
+                "Perfekta",
+                "Dauer",
+                "Bonolit",
+                "Bergauf",
+            ],
+            [
+                "Юнис",
+                "Фарвест",
+                "Старатели",
+                "Русеан",
+                "Основит",
+                "Общий производитель",
+                "Литокол",
+                "Керафлекс",
+                "Волма",
+                "Боларс",
+                "Weber Vetonit",
+                "Pufas",
+                "Perfekta",
+                "Kreisel",
+                "Knauf",
+                "Henkel",
+                "Glims",
+                "Bergauf",
+            ],
+            [
+                "Общий производитель",
+                "Neomid"
+            ],
+            [
+                "Общий производитель",
+                "Neomid",
+                "Henkel",
+            ],
+            [
+                "Юнис",
+                "Старатели",
+                "Русеан",
+                "Основит",
+                "Литокол",
+                "Волма",
+                "Боларс",
+                "Weber Vetoni",
+                "PRO",
+                "Plitonit",
+                "Perfekta",
+                "Knauf",
+                "Henkel",
+                "Glims",
+                "Dauer",
+                "Bergauf",
+            ],
+            [
+                "Юнис",
+                "Старатели",
+                "Русеан",
+                "Основит",
+                "Общий производитель",
+                "Литокол",
+                "Волма",
+                "Вилис",
+                "Боларс",
+                "Weber Vetonit",
+                "Verbund",
+                "PRO",
+                "Plitonit",
+                "Perfekta",
+                "Mapei",
+                "Kreisel",
+                "Knauf",
+                "Henkel",
+                "Glims",
+                "Forman",
+                "Dauer",
+                "Bergauf",
+            ],
+            [
+                "Общий производитель",
+                "Knauf",
+                "Bergauf",
+            ],
+            [
+                "Сенеж",
+                "Pinotex",
+                "Neomid"
+            ],
+
+        ];
+        let product = [
+            [
+                ["Лак фасадный МультиПротект-Л (5 л)"],
+                ["Лак по кирпичу, камню и бетону КБС (10 л)"],
+                ["Лак для яхт Marshall Protex / Маршал Протекс глянец (13 л)", "Лак для яхт Marshall Protex / Маршал Протекс п/мат (13 л)", "Лак паркетный Marshall Protex / Маршал Протекс п/мат (13 л) "],
+                ["Лак для паркета Dulux Celco Terra 20 / Дюлакс Селко Терра п/мат (10 л)", "Лак для паркета Dulux Celco Terra 45 / Дюлакс Селко Терра п/гл (10 л)", "Лак для паркета Dulux Celco Terra 90 / Дюлакс Селко Терра глянец (10 л)"],
+            ],
+            [
+                ["Sniezka WHITE EFFECT водно-дисперсионная полиакриловая (3 л)", "Краска водно-эмульсионная «Superweiss» (15 кг)", "Краска для внутренних работ Sniezka OTTO farbe снежно-белая/ акриловая/ СНЕЖКА (3 л)", "Краска для внутренних работ ОПТИМИСТ W202 (1.5 кг)", "Краска для внутренних работ ОПТИМИСТ W202 (14 кг)", "Краска для внутренних работ ОПТИМИСТ W202 (3 кг)", "Краска для внутренних работ ОПТИМИСТ W202 (45 кг)", "Краска для внутренних работ ОПТИМИСТ W204 (1.5 кг)", "Краска для внутренних работ ОПТИМИСТ W204 (14 кг)", "Краска для внутренних работ ОПТИМИСТ W204 (3 кг)", "Краска для внутренних работ ОПТИМИСТ W204 (45 кг)", "Краска для внутренних работ ОПТИМИСТ W209 (14 кг)", "Краска для внутренних работ ОПТИМИСТ W209 (3 кг)", "Краска для внутренних работ ОПТИМИСТ W209 (45 кг)", "Краска для внутренних работ ОПТИМИСТ W209 (7 кг)", "Краска для интерьеров ОРЕОЛ белоснежная (13 кг)", "Краска для металла антикоррозийная ZIP-GUARD белая гладкая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD белая гладкая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD белая матовая (0.9 л)", " Краска для металла антикоррозийная ZIP-GUARD белая матовая (3.7 л)", " Краска для металла антикоррозийная ZIP-GUARD желтая гладкая (0.9 л)", " Краска для металла антикоррозийная ZIP-GUARD желтая гладкая (3.7 л)", " Краска для металла антикоррозийная ZIP-GUARD зеленая гладкая (0.9 л)", " Краска для металла антикоррозийная ZIP-GUARD белая матовая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD серая гладкая (0.9 л)", " Краска для металла антикоррозийная ZIP-GUARD серая, молотковая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD серая, молотковая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD серая-серебристая, молотковая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD серая-серебристая, молотковая (3.7 л)", " Краска для металла антикоррозийная ZIP-GUARD серая-тёмная, молотковая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD серая-тёмная, молотковая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD синяя гладкая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD синяя гладкая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD черная гладкая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD черная гладкая (0.9 л)", " Краска для металла антикоррозийная ZIP-GUARD черная матовая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD черная матовая (3.7 л)", "Краска для металла антикоррозийная ZIP-GUARD чёрная, молотковая (0.9 л)", "Краска для металла антикоррозийная ZIP-GUARD чёрная, молотковая (3.7 л)", "Краска для обоев ОРЕОЛ белоснежная (3 кг)", "Краска для обоев ОРЕОЛ белоснежная (6.5 кг)", "Краска для потолков NORME COLOR PROFI супербелая (14 кг)", " Краска для потолков NORME COLOR PROFI супербелая (3 кг)", "Краска для потолков NORME COLOR PROFI супербелая (45 кг)", "Краска для потолков NORME COLOR PROFI супербелая (7 кг)", "Краска для потолков RAUF R21 супербелая/матовая/латексная (14 кг)", "Краска для потолков ОПТИМИСТ W201 /белая, матовая, акриловая/ (1.5 кг)", "Краска для потолков ОПТИМИСТ W201 /белая, матовая, акриловая/ (45 кг)", "Краска для потолков ОПТИМИСТ W203 /супербелая, матовая, латексная/ (1.5 кг)", "Краска для потолков ОПТИМИСТ W203 /супербелая, матовая, латексная/ (14 кг)", "Краска для потолков ПУТЁВАЯ /ВД - АК - 2180/ супербелая (7 кг)", "Краска для стен и потолков BELINKA B1 белая/ моющаяся (2 л)", "Краска для стен и потолков BELINKA ослепительно белая (2 л)", "Краска для стен и потолков MAGNAT CERAMIC (База C) /Sniezka/ (8.6 л) ", "Краска для стен и потолков MiX Superwhite (14 кг)", "Краска для стен и потолков SNIEZKA PERFEKT латексная (База C) /Sniezka/ (9 л)", "Краска для стен и потолков Sniezka Super Latex (0.94 л)", "Краска для стен и потолков Sniezka Super Latex (2.82 л)", "Краска для стен и потолков Sniezka ПОДТЕКИ-ПЯТНА (0.4 л) ", "Краска для стен и потолков Sniezka ПОДТЕКИ-ПЯТНА (1 л)", "Краска для стен и потолков ЛАТЕК Л201 белая (14 кг)", "Краска для стен и потолков ЛАТЕК Л201 белая (3 кг)", "Краска для стен и потолков ЛАТЕК Л201 белая (45 кг)", "Краска для стен и потолков ЛАТЕК Л202 супербелая/матовая/влагостойкая (14 кг)", "Краска для стен и потолков ЛАТЕК Л202 супербелая/матовая/влагостойкая (3 кг)", "Краска для стен и потолков ОРЕОЛ (6.5 кг)", "Краска для стен и потолков ПУТЁВАЯ /ВД - АК - 2180/ супербелая (14 кг)", "Краска для стен и потолков ПУТЁВАЯ /ВД - АК - 2180/ супербелая (45 кг)", "Краска интерьерная /акриловая/моющаяся/матовая/супербелая ОПТИМИСТ W206 (14 кг)", "Краска интерьерная /акриловая/моющаяся/матовая/супербелая ОПТИМИСТ W206 (45 кг)", "Краска интерьерная NORME COLOR PROFI супербелая (14 кг)", "Краска интерьерная NORME COLOR PROFI супербелая (3 кг)", "Краска интерьерная NORME COLOR PROFI супербелая (45 кг)", "Краска интерьерная NORME COLOR PROFI супербелая (7 кг)", "Краска интерьерная NORME COLOR PROFI супербелая/моющаяся (14 кг)", "Краска интерьерная NORME COLOR PROFI супербелая/моющаяся (3 кг)", "Краска интерьерная NORME COLOR PROFI супербелая/моющаяся (45 кг)", "Краска интерьерная NORME COLOR PROFI супербелая/моющаяся (7 кг)", "Краска интерьерная NORME COLOR- Эконом белая/матовая (45 кг)", 'Краска интерьерная RDS DECORE "PROFI супербелая, моющаяся (3 кг)', "Краска интерьерная моющаяся/ латексная/База С RAUF R24 (9 л)", "Краска интерьерная моющаяся/ супербелая/ матовая/ латексная RAUF R23 (9 л)", "Краска интерьерная супербелая/матовая/латексная RAUF R22 (9 л)", "Краска КУХНЯ-ВАННАЯ белая матовая, биостатическая с добавлением серебра (1 л)", "Краска КУХНЯ-ВАННАЯ белая с добавкой силикона ( база А ) /Sniezka (0.94 л)", "Краска КУХНЯ-ВАННАЯ с добавкой силикона ( база С ) /Sniezka/ (0,9 л)", "Краска КУХНЯ-ВАННАЯ с добавкой силикона ( база С ) /Sniezka/ (2.7 л)", "универсальная (база С) NORME COLOR PROFI (9 л)", "Краска универсальная для внут/наруж. работ E-Z TOUCH Imagination (18.9 л)", "Краска универсальная для внут/наруж. работ E-Z TOUCH Imagination (3.7 л)", "Краска универсальная фактурная NORME COLOR PROFI (15 кг)", "Эмаль Zlata / Злата ПФ-115 (2 л)", "Эмаль Zlata / Злата ПФ-115 алкидная вишневая (20 л)", "Zlata / Злата ПФ-115 желтая (2.7 л)", "Эмаль Zlata / Злата ПФ-115 коричневая (1.9 л)"],
+                ["Фасадная акриловая краска LITOKOL LITOTHERM Paint Acryl / ЛИТОКОЛ ЛИТОТЕРМ Пэйнт Акрил (20 кг)", "Фасадная акриловая краска LITOKOL LITOTHERM Paint Sil / ЛИТОКОЛ ЛИТОТЕРМ Пэйнт Сил (20 кг)"],
+                ["Краска для потолков Евролюкс Е-1 белая (14 кг)"],
+                ["Краска Боларс Elit / Элит белая (15 кг)", "Краска Боларс Elit / Элит белая (7 кг)", "Краска для стен и потолков Боларс белая (15 кг)", "Краска для стен и потолков Боларс белая (7 кг)", "Краска для стен и потолков Боларс супербелая ", "Краска для стен и потолков Боларс супербелая (40 кг)", "Краска для стен и потолков Боларс супербелая (7 кг)", "Краска для стен и потолков Боларс фасадная (15 кг)", "Краска для стен и потолков Боларс фасадная (40 кг)", "Краска для стен и потолков Боларс фасадная (7 кг)"],
+                ["Краска водоэмульсионная EURO 7 POWER матовая (база С) /Tikkurila (9 л)"],
+                ["Краска водно-дисперсионная Respect / Респект супербелая (14 кг)", "Краска интерьерная огнебиозащитная Neomid / Неомид 3 в 1 (5 кг)", "Краска огнезащитная для металла на органической основе NEOMID/НЕОМИД (25 кг)"],
+                ["Краска Marshall Maestro / Маршал Маэстро Белый Потолок Люкс мат (10 л)", "Краска Marshall Maestro / Маршал Маэстро Интерьерная Классика мат (10 л)", "Краска Marshall Maestro / Маршал Маэстро Фасадная мат (10 л)", "Краска латексная Marshall Akrikor / Маршал Акрикор (10 л)", "Краска латексная глубокоматовая Marshall Export-2 / Маршал Экспорт-2 (10 л)", "Краска латексная матовая Marshall Export-7 / Маршал Экспорт-7 (10 л)", "Краска латексная структурная Marshall Akrikor / Маршал Акрикор (10 л)"],
+                ["Эмаль алкидная Dulux Master M30 / Дюлакс Мастер база BW п/мат (10 л)", "Эмаль алкидная Dulux Master M90 / Дюлакс Мастер база BW глянец (10 л)"],
+                ["Эмаль для отопительных приборов Dufa Heizkorperlack / Дюфа (0.75 л)"],
+                ["Краска ALPINA Практичная интерьерная Caparol/Альпина (10 л)", "Краска водно-дисперсионная ALPINA Надежная интерьерная /Альпина (10 л)", "Эмаль для радиаторов Alpina / Альпина (0.75)"],
+                ["Экоэмаль для радиаторов Alpa / Альпа белая п/мат (0.5 л)", "Эмаль для радиаторов Alpa / Альпа белая п/мат (0.5 л)", "Эмаль для радиаторов Alpa / Альпа белая п/мат (2.5 л)"],
+            ],
+            [
+                ["Гидрофобизатор Типром У1 (5 л)", "Клей для безосновных материалов Оптимист-Элита (14 кг)", "Клей для дерева влагостойкий Titebond II / Тайтбонд (3.785 мл)", "Клей для коммерческого линолеума NORME COLOR PROFI (14 кг)", "Клей для обоев ГЕРМАНСКИЙ БУМАЖНЫЙ (200 гр)", "Клей для обоев ГЕРМАНСКИЙ ВИНИЛОВЫЙ (200 гр)", "Клей для обоев ГЕРМАНСКИЙ ОБОЙНЫЙ (220 гр)", "Клей для обоев ГЕРМАНСКИЙ УНИВЕРСАЛЬНЫЙ (220 гр)", "Клей для обоев ГЕРМАНСКИЙ УНИВЕРСАЛЬНЫЙ (220 гр)", "Клей для обоев ГЕРМАНСКИЙ ФЛИЗЕЛИНОВЫЙ (220 гр)", "Клей для обоев ПУТЁВАЯ МАРКА универсальный (500 гр)", "Клей для паркета ARTELIT PB-140 двухкомпонентный полиуретановый (6 кг)", "Клей для паркета SIKA SikaBond-95 Parquet (17 кг)", "Клей для стеклообоев RDS NORME COLOR PROFI/РДС (10 кг)", "Клей для стеклообоев ОПТИМИСТ (10 кг)", "Клей для стеклообоев ОПТИМИСТ (5 кг)", "Клей монтажный КИН Декор (310 мл)", "Клей монтажный универсальный КИН Держак на основе ПВА (300 мл)", "Клей монтажный универсальный КИН Сверхсильный (310 мл)", "Клей монтажный универсальный КИН Суперсильный (310 мл)", "Клей обойный ОКЛЕЙ универсальный (500 гр)", "Клей строительный КС термостойкий для внутренних работ/ОПТИМИСТ (1.5 кг)", "Клей строительный КС термостойкий для внутренних работ/ОПТИМИСТ (18 кг)", "Клей строительный КС термостойкий для внутренних работ/ОПТИМИСТ (5 кг)", "Клей строительный КС термостойкий для внутренних работ/ОПТИМИСТ (9 кг)", "Очиститель универсальный Типром+ (5 л)", "Уайт - спирит ПУТЁВАЯ марка (нефрас С-4, 150/200) ТУ (0.5 л)", "Уайт - спирит ПУТЁВАЯ марка (нефрас С-4, 150/200) ТУ (1 л)", "Уайт - спирит ПУТЁВАЯ марка (нефрас С-4, 150/200) ТУ (10 л)", "Уайт - спирит ПУТЁВАЯ марка (нефрас С-4, 150/200) ТУ (5 л)", "Уничтожитель ржавчины Вершина В-52 (0.55 кг)"],
+                ["Верхнее покрытие для декоративной штукатурки Litokol Litolux / Литокол Литолюкс (1 кг)", "Очиститель LITOKOL MONOMIX CLEANER GEL / ЛИТОКОЛ МОНОМИКС КЛИНЕР ГЕЛЬ (0.75 л)"],
+                ["Клей Боларс FiberFix для стеклохолста (10 кг)"],
+                ["Клей строительный КС-М Ареал"],
+                ["Универсальная смазка WD-40 секрет в трубочке (420 мл)", "Универсальная смазка WD-40/WD-00016 (300 мл)", "Универсальная смазка WD-40/WD-0002 (400 мл)"],
+                ["Клей для кладки блоков /всесезонный/ TYTAN professional EURO/ТИТАН (870 мл) ", "Клей для линолеума и ковролина TYTAN Professional /ТИТАН (14 кг)", "Клей для наружной теплоизоляции TYTAN STYRO 753 GUN/ ТИТАН (750 мл)", "Клей монтажный TYTAN professional Heavy duty/ ТИТАН (310 мл)", "Клей монтажный TYTAN professional Hydro Fix / ТИТАН (310 мл)", "Клей монтажный TYTAN professional Multi-use SBS / ТИТАН (310 мл)", "Клей монтажный TYTAN professional Power Flex / ТИТАН (290 мл)",],
+                ["Клей для зеркал SOUDAL 47А каучуковый/СОУДАЛ (280 мл)", "Клей монтажный SOUDAL 48А каучуковый/ СОУДАЛ (280 мл)"],
+                ["Антиплесень для жилых помещений Quelyd / Келид (0.5 л)"],
+                ["Клей готовый для обоев Pufas Glutolin GLS / Пуфас (10 кг)"],
+                ["Клей для стеклообоев Oscar / Оскар (10 л)"],
+                ["Очиститель (смывка) цементного налета NEOMID 560 (0.5 л)", "Очиститель (смывка) цементного налета NEOMID 560 (5 л)"],
+                ["Очиститель для плитки Mapei Keranet Polvere / Мапеи Керанет (1 л)"],
+                ["Клей для пенополистерола Henkel Ceresit CT 85 Зима / Хенкель Церезит СТ 85 Зима (25 кг)"],
+                ["Клей для паркета Bostik TARBICOL KPA / Бостик (25 кг)", "Клей для паркета Bostik TARBICOL KPA / Бостик Тарбикол (7 кг)", "Клей для паркета Bostik TARBICOL PU 2K / Бостик Тарбикол (часть А+В / 10 кг)"],
+            ],
+            [
+                ["Бетонконтакт Masterkoff / Мастеркоф МК-16 (5 кг)"],
+                ["Бетоноконтакт грунт адгезионный Боларс (0.3-0.6 мм / 10 кг)"],
+                ["Бетоноконтакт Ареал (20 кг)"],
+                ["Грунтовка KNAUF бетоконтакт (5 л)/КНАУФ Бетоноконтакт"],
+                ["Бетон-контакт Alpina Expert / Альпина Эксперт (4.5 кг)"],
+            ],
+            [
+                ["Алебастр ЮНИС (5 кг)"],
+                ["Алебастр белый Г-5 Диана (3 кг)", "Алебастр белый Г-5 Диана (5 кг)", "Алебастр светло-серый Артель (3 кг)", "Алебастр светло-серый Артель (5 кг)", "Побелка Диана (2 кг) ", "Диана (3 кг) ", "Побелка Диана (5 кг)", "Побелка меловая Артель (2 кг)", "Побелка сухая 2х комп. Артель (2 кг)", "Побелка сухая 2х комп. Артель (5 к)"],
+                ["Ремонтный состав Mapei Mapegrout Hi-Flow (25 кг)"],
+                ["Ремсостав литьевой BERGAUF В - Construct FILLER 60 (25 кг)", "Ремсостав литьевой BERGAUF В - Construct FILLER 40 (25 кг)", "Ремсостав тиксотропный BERGAUF B - Construct TX B30 (25 кг)", "Ремсостав тиксотропный BERGAUF B - Construct TX B55 (25 кг)"],
+            ],
+            [
+                ["Герметик бутилкаучуковый Технониколь №45 серый (16 кг)"],
+                [
+                    "Мастика битумная ГРИДА МГХ-Г для внешней изоляции (21 кг)",
+                    "Мастика битумная ГРИДА МГХ-Г для внешней изоляции (3 кг)",
+                    "Мастика каучуко-битумная ГРИДА МГХ-К кровельная (18 кг)",
+                    "Мастика клеящая ГРИДА термостойкая (1,5 кг)",
+                    "Мастика клеящая ГРИДА термостойкая (20 кг)",
+                    "Мастика резино-битумная ГРИДА МГХ-Т (21 кг)",
+                    "Мастика резино-битумная ГРИДА МГХ-Т (3 кг)",
+                    "Мастика резино-битумная ГРИДА МГХ-Т (5 кг)",
+                    "Праймер битумный ICOPAL (16 л) /Виллако/",
+                    "Праймер битумный ГРИДА НТ (20 кг)",
+                    "Праймер битумный ГРИДА СТ быстросохнущий (20 кг)"
+                ],
+                [
+                    "Гидроизоляционный состав LITOKOL HIDROFLEX / ЛИТОКОЛ ГИДРОФЛЕКС (10 кг)",
+                    "Гидроизоляционный состав LITOKOL HIDROFLEX / ЛИТОКОЛ ГИДРОФЛЕКС (20 кг)",
+                    "Гидроизоляционный состав LITOKOL HIDROFLEX / ЛИТОКОЛ ГИДРОФЛЕКС (5 кг)",
+                    "Гидроизоляционный состав однокомпонентный Mapei Planiseal 88 (25 кг)",
+                    "Двухкомпонентная эластичная гидроизоляционная смесь Litokol Elastocem A / Литокол Эластосэм А (24 кг)",
+                    "Двухкомпонентная эластичная гидроизоляционная смесь Litokol Elastocem B / Литокол Эластосэм Б (8 кг)",
+                    "Двухкомпонентный эластичный гидроизоляционный состав LITOKOL COVERFLEX A / ЛИТОКОЛ КОВЕРФЛЕКС А (20 кг)",
+                    "Двухкомпонентный эластичный гидроизоляционный состав LITOKOL COVERFLEX B / ЛИТОКОЛ КОВЕРФЛЕКС Б (10 кг)",
+                    "Однокомпонентный эластичный гидроизоляционный состав LITOKOL AQUAMASTER / ЛИТОКОЛ АКВАМАСТЕР (10 кг)",
+                    "Однокомпонентный эластичный гидроизоляционный состав LITOKOL ELASTOCEM MONO / ЛИТОКОЛ ЭЛАСТОСЭМ МОНО (20 кг)",
+                    "Тампонажный раствор (гидропломба) LITOKOL LITOBLOCK AQUA / ЛИТОКОЛ ЛИТОБЛОК АКВА (5 кг)",
+                    "Цементная смесь PCI POLYFIX 30 Sek. (1 кг)",
+                    "Эластичный гидроизоляционный состав LITOKOL AQUAMASTER / ЛИТОКОЛ АКВАМАСТЕР (20 кг)"
+                ],
+                ["Гидроизоляция обмазочная Боларс HydroWall-H (18 кг)"],
+                ["Гидроизоляционный раствор на цементной основе weber.tec 930 (20 кг)"],
+                ["Штукатурная гидроизоляция  Plitonit / Плитонит Гидроизоляция Гидрослой (20 кг)"],
+                ["Гидроизоляция обмазочная PERFEKTA / ПЕРФЕКТА АКВАСТОП (20 кг)"],
+                [
+                    "Гидроизоляционная жидкая мембрана Mapei Mapegum WPS / Мапеи Мапегум ВПС (10 кг)",
+                    "Гидроизоляционная жидкая мембрана Mapei Mapegum WPS / Мапеи Мапегум ВПС (25 кг)",
+                    "Гидроизоляционная жидкая мембрана Mapei Mapegum WPS / Мапеи Мапегум ВПС (5 кг)",
+                    "Гидроизоляция для бетонных конструкций Mapei Idrosilex Pronto / Мопеи Идросилекс Пронто (25 кг)",
+                    "Полимерный состав Mapei Mapelastic / Мапеи Мапеластик компонент А (24 кг)",
+                    "Полимерный состав Mapei Mapelastic B / Мапеи Мапеластик Б (8 кг)"
+                ],
+                ["Гидроизоляционная смесь Kraisel Dichtungsschlamme 810 / Крайзель (25 кг)"],
+                ["Цемент Henkel Ceresit CX 5 / Хенкель Церезит (2 кг)", "Цемент Henkel Ceresit CX 5 / Хенкель Церезит (5 кг)"],
+                [
+                    "Гидропломба Glims / Глимс (800 г)",
+                    "Эластичный герметик Glims GreenResin / Глимс ГринРезин (1.3 кг)",
+                    "Эластичный герметик Glims GreenResin / Глимс ГринРезин (3.5 кг)"],
+                [
+                    "идроизоляция BERGAUF Hydrostop / БЕРГАУФ Гидростоп (20 кг)",
+                    "Гидроизоляция обмазочного типа цементная B - Isol HYDRO (25 кг)",
+                    "Смесь для устранения активных протечек сверхбыстротвердеющая BERGAUF  B - Isol Hydroplomba (600 г)"
+                ],
+                ["Гидроизолирующее средство Alpa / Альпа Полифлюид (1 л)", "Гидроизолирующее средство Alpa Polyfluid / Альпа Полифлюид (5 л)"],
+            ],
+            [
+                [
+                    "Грунтовка акриловая универсальная ЮНИС (5 л)",
+                    "Грунтовка акриловая ЮНИС Грунт ВР (5 л)",
+                    "Грунтовка акриловая ЮНИС Грунт ГП (10 л)",],
+                [
+                    "Грунтовка глубокого проникновения СТАРАТЕЛИ (10 л)",
+                    "Грунтовка глубокого проникновения СТАРАТЕЛИ (5 л)",
+                    "Грунтовка универсальная СТАРАТЕЛИ (5 л)",
+                ],
+                [
+                    "Грунт глубокого проникновения DANO GRUNT (10 л)",
+                    "Грунт-эмаль быстросохнущая ОРЕОЛ алкидно-уретановая ТИТАН красно-кор. Эмпилс (0.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 белая NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 белая NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 белая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 белая НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 голубая  NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 голубая NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 голубая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 голубая НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 жёлтая NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 жёлтая NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 жёлтая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 жёлтая НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная  НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная тёмная НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 зелёная тёмная НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 коричневая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 коричневая НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красная  NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красная NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красная НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красная НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красно-коричневая NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красно-коричневая NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красно-коричневая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 красно-коричневая НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 охра НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 охра НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая  НОВБЫТХИМ (20 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая  НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая тёмная НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 серая тёмная НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 синяя NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 синяя NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 черная NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 черная NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 чёрная  НОВБЫТХИМ (1 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 чёрная НОВБЫТХИМ (20 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 чёрная НОВБЫТХИМ (3 л)",
+                    "Грунт-эмаль по ржавчине 3 в 1 шоколадная  NOVOCOLOR/Новоколор (1 кг)",
+                    "Грунт-эмаль по ржавчине 3 в 1 шоколадная NOVOCOLOR/Новоколор (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3в1 голубой небесный - молотковый эффект SNIEZKA/Снежка (0.65 л)",
+                    "Грунт-эмаль по ржавчине 3в1 жёлтая/антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (0.75 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зеленый тёмный ( эффект металлической структуры) SNIEZKA/Снежка (0.65 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зеленый тёмный SNIEZKA/Снежка (0.65 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зелёная/антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (0.75 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зелёная/антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (2.1 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зелёное яблоко NORME COLOR/Норм Колор (0.9 л)",
+                    "Грунт-эмаль по ржавчине 3в1 зелёное яблоко NORME COLOR/Норм Колор (2.7 л)",
+                    "Грунт-эмаль по ржавчине 3в1 коричневая/антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (0.75 л)",
+                    "Грунт-эмаль по ржавчине 3в1 красная /антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (0.75 л)",
+                    "Грунт-эмаль по ржавчине 3в1 красная /антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (2.1 л)",
+                    "Грунт-эмаль по ржавчине 3в1 красно-коричневая  /антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (2.1 л)",
+                    "Грунт-эмаль по ржавчине 3в1 красно-коричневая /антикоррозионная/ ГЛАВНЫЙ ТЕХНОЛОГ Новбытхим (0.75 л)",
+                    "Грунт-эмаль по ржавчине 3в1 красно-коричневая НЕРЖАВЕЙ Ярославские краски (0.8 кг)",
+                    "Грунт-эмаль по ржавчине 3в1 красно-коричневая ОПТИЛЮКС быстросохнущая/Ижевск (1.9 кг)",
+                    "Грунт-эмаль по ржавчине 3в1 оранжевая NORME COLOR/Норм Колор (0.9 л)",
+                    "Грунт-эмаль по ржавчине 4 в 1 винно-красный VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 зелёный мох VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 серое окно VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 сигнальный белый VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 сигнальный синий VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 черный янтарь VIXEN/Астрохим (520 мл)",
+                    "Грунт-эмаль по ржавчине 4 в 1 шоколадно-коричневый VIXEN/Астрохим (520 мл)",
+                    "Грунтовка /Бетон - Контакт NORME COLOR PROFI универсальная (3 кг)",
+                    "Грунтовка бетон - контакт NORME COLOR PROFI универсальная  (18 кг)",
+                    "Грунтовка бетон - контакт RDS Decore NORME COLOR PROFI DISCOUNT универсальная  (18 кг)",
+                    "Грунтовка бетон - контакт RDS Decore универсальная  (12 кг)",
+                    "Грунтовка бетон - контакт RDS Decore универсальная  (6 кг)",
+                    "Грунтовка бетон - контакт акриловая Оптимист G109 (12 кг)",
+                    "Грунтовка бетон - контакт акриловая Оптимист G109 (12 кг)",
+                    "Грунтовка бетон - контакт акриловая Оптимист G109 (6 кг)",
+                    "Грунтовка ГИПЕРДЕСМО Universal Primer 2K 4060-A (1,6 кг)",
+                    "Грунтовка ГИПЕРДЕСМО Universal Primer 2K 4060-B (2.4 кг)",
+                    "Грунтовка для внутренних работ NORME COLOR PROFI проникающая (10 л)",
+                    "Грунтовка для внутренних работ NORME COLOR PROFI проникающая (5 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G101 проникающая (1 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G101 проникающая (10 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G101 проникающая (5 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G107 глубокого проникновения (1 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G107 глубокого проникновения (10 л)",
+                    "Грунтовка для внутренних работ ОПТИМИСТ G107 глубокого проникновения (5 л)",
+                    "Грунтовка для наружных и внутренних работ NORME COLOR СТРОЙКА универсальная (10 л)",
+                    "Грунтовка для наружных и внутренних работ NORME COLOR СТРОЙКА универсальная (20 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G102 (1 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G102 (10 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G102 (5 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G103 глубокого проникновения (1 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G103 глубокого проникновения (10 л)",
+                    "Грунтовка для наружных и внутренних работ ОПТИМИСТ G103 глубокого проникновения (5 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PREMIUM глубокого проникновения (10 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PREMIUM глубокого проникновения (5 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PROFI глубокого проникновения (10 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PROFI глубокого проникновения (5 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PROFI проникающая (10 л)",
+                    "Грунтовка для наружных и внутренних работ универсальная NORME COLOR PROFI проникающая (5 л)",
+                    "Грунтовка латексная для наружных и внутренних работ NORME COLOR PROFI (10 л)",
+                    "Грунтовка универсальная ARTELIT WB-222 дисперсионная (5 л)",
+
+                ],
+                [
+                    "Грунт БОЛАРС Антиплесень (5 л)",
+                    "Грунт БОЛАРС глубокого проникновения (10 л)",
+                    "Грунт БОЛАРС глубокого проникновения (5 л)",
+                ],
+                [
+                    "Грунтовка Knauf / Кнауф Миттельгрунд (10 кг)",
+                    "Грунтовка KNAUF TIEFENGRUND / КНАУФ ТИФЕНГРУНД (5 л)",
+                ],
+                [
+                    "Грунтовка  адгезионная BERGAUF Beton Kontakt морозостойкая (14 кг)",
+                    "Грунтовка цементная BERGAUF B - Isol HydroPrimer (15 кг)",
+                ],
+            ],
+            [
+                ["Кладочный раствор Основит ПУТФОРМ MC114 L высокоэффективный (20 кг)",],
+                ["Кладочный раствор для блоков YTONG / ИТОНГ (25 кг)",],
+                [
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Бежевый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Белый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Вишневый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Горчичный (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Желтый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Кирпичный (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Коричневый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Красный (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Кремово-бежевый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Кремово-желтый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Кремово-розовый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Кремовый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Медный (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Светло-коричневый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Светло-серый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Серый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Супер белый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Темно-серый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Фисташковый (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Черный (25 кг)",
+                    "Цветная смесь для расшивки швов PERFEKTA / ПЕРФЕКТА ЛИНКЕР ШОВ Шоколадный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Бежевый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Бежевый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Белый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Белый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Белый ЗИМНИЙ (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Белый ЗИМНИЙ (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Вишневый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Вишневый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Горчичный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Горчичный (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Желтый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Желтый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кирпичный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кирпичный (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Коричневый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Коричневый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Красный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Красный (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-бежевый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-бежевый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-желтый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-желтый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-розовый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремово-розовый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремовый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Кремовый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Медный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Медный (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Светло-коричневый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Светло-коричневый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Светло-серый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Светло-серый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Серый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Серый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Серый ЗИМНИЙ (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Серый ЗИМНИЙ (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Супер БЕЛЫЙ (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Супер БЕЛЫЙ (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Темно-серый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Темно-серый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Фисташковый (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Фисташковый (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Черный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Черный (50 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Шоколадный (25 кг)",
+                    "Цветной кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР Стандарт Шоколадный (50 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Бежевый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Белый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Вишневый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Горчичный (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Желтый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Кирпичный (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Коричневый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Красный (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Кремово-бежевый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Кремово-желтый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Кремово-розовый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Кремовый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Медный (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Светло-коричневый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Светло-серый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Серый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Супер белый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Темно-серый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Фисташковый (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Черный (25 кг)",
+                    "Цветной облицовочный кладочный раствор PERFEKTA / ПЕРФЕКТА ЛИНКЕР ЭКСПЕРТ Шоколадный (25 кг)",
+                ],
+            ],
+            [
+                [
+                    "Клей плиточный UNIS 2000 / ЮНИС 2000 (25 кг)",
+                    "Клей плиточный UNIS 2000 / ЮНИС 2000 (5 кг)",
+                    "Клей плиточный UNIS PLUS / ЮНИС ПЛЮС (25 кг)",
+                    "Клей плиточный UNIS PLUS / ЮНИС ПЛЮС (5 кг)",
+                    "Клей плиточный UNIS XXI / ЮНИС XXI (25 кг)",
+                    "Клей плиточный UNIS XXI / ЮНИС XXI (5 кг)",
+                    "Плиточный клей UNIS / ЮНИС Бассейн (25 кг)",
+                    "Плиточный клей UNIS / ЮНИС Бассейн HYDRO (25 кг)",
+                    "Плиточный клей UNIS / ЮНИС Белфикс (25 кг)",
+                    "Плиточный клей UNIS GRANIT / Юнис Гранит (25 кг)",
+                    "Плиточный клей UNIS U-200 WhiteFlex белый высокопластичный (25 кг)",
+                ],
+                ["Клей для плитки Старатели Стандарт (25 кг)",],
+                ["Клей плиточный РУСЕАН FIXATOR / Фиксатор (25 кг)",
+                    "Клей плиточный РУСЕАН Super Fix / Супер Фикс (25 кг)",
+                    "Клей ячеистого бетона Русеан (для пеноблоков / 25 кг)",],
+                [
+                    "Клей гипсовый ОСНОВИТ ГИПСФОРМ MG115 (20 кг)",
+                    "Клей плиточный быстротвердеющий ОСНОВИТ ГРАНИПЛИКС AC15 R (25 кг)",
+                    "Клей плиточный ОСНОВИТ БЕЛПЛИКС АС17 W (Т-17) (25 кг)",
+                    "Клей плиточный ОСНОВИТ МАКСИПЛИКС АС16 (Т-16) (25 кг)",
+                    "Клей плиточный ОСНОВИТ СТАРПЛИКС AC11 (Т-11) (25 кг)",
+                    "Плиточный клей ОСНОВИТ БАЗПЛИКС AC10 (25 кг)",
+                    "Плиточный клей ОСНОВИТ ГРАНИПЛИКС AC 14 (25 кг)",
+                    "Плиточный клей ОСНОВИТ МАСТПЛИКС AC12 T (25 кг)",
+                    "Плиточный клей эффективный ОСНОВИТ МАСТПЛИКС AC12 W белый (25 кг)",
+                    "Штукатурно-клеевая смесь зимняя ОСНОВИТ КАВЕРПЛИКС AС117 F (25 кг)",
+                    "Штукатурно-клеевая смесь ОСНОВИТ КАВЕРПЛИКС ТС117 (Т-117) (25 кг)",
+                ],
+                ["Плиточный клей ЭКО Базовый (25 кг)",],
+                ["Плиточный клей МКУ Стандарт МС 5 (25 кг)",],
+                [
+                    "Клей гипсовый ОСНОВИТ ГИПСФОРМ MG115 (20 кг)",
+                    "Клей плиточный быстротвердеющий ОСНОВИТ ГРАНИПЛИКС AC15 R (25 кг)",
+                    "Клей плиточный ОСНОВИТ БЕЛПЛИКС АС17 W (Т-17) (25 кг)",
+                    "Клей плиточный ОСНОВИТ МАКСИПЛИКС АС16 (Т-16) (25 кг)",
+                    "Клей плиточный ОСНОВИТ СТАРПЛИКС AC11 (Т-11) (25 кг)",
+                    "Плиточный клей ОСНОВИТ БАЗПЛИКС AC10 (25 кг)",
+                    "Плиточный клей ОСНОВИТ ГРАНИПЛИКС AC 14 (25 кг)",
+                    "Плиточный клей ОСНОВИТ МАСТПЛИКС AC12 T (25 кг)",
+                    "Плиточный клей эффективный ОСНОВИТ МАСТПЛИКС AC12 W белый (25 кг)",
+                    "Штукатурно-клеевая смесь зимняя ОСНОВИТ КАВЕРПЛИКС AС117 F (25 кг)",
+                    "Штукатурно-клеевая смесь ОСНОВИТ КАВЕРПЛИКС ТС117 (Т-117) (25 кг)",
+                ],
+                [
+                    "Плиточный клей ЭКО Базовый (25 кг)",
+                ],
+                [
+                    "Плиточный клей МКУ Стандарт МС 5 (25 кг)",
+                ],
+                [
+                    "Двухкомпонентный полиуретановый клей LITOKOL LITOELASTIC A + В / ЛИТОКОЛ ЛИТОЭЛАСТИК (5 кг)",
+                    "Дисперсионный клей LITOKOL LITOACRIL PLUS / ЛИТОКОЛ ЛИТОАКРИЛ ПЛЮС (1 кг)",
+                    "Дисперсионный клей LITOKOL LITOACRIL PLUS / ЛИТОКОЛ ЛИТОАКРИЛ ПЛЮС 5 кг",
+                    "Клеевая смесь LITOKOL LITOFLEX K80 ECO / ЛИТОКОЛ ЛИТОФЛЕКС К80 ЭКО (25 кг)",
+                    "Клеевая смесь LITOKOL LITOFLEX K80 ECO / ЛИТОКОЛ ЛИТОФЛЕКС К80 ЭКО (5 кг)",
+                    "Клей LITOKOL LITOELASTIC A + В / ЛИТОКОЛ ЛИТОЭЛАСТИК (10 кг)",
+                    "Клей для плитки Litokol Hyperflex K100 серый (20 кг)",
+                    "Клей класс D1 (белый) LITOKOL LITOACRIL FIX / ЛИТОКОЛ ЛИТОАКРИЛ ФИКС 5 кг",
+                    "Клей класс D1 LITOKOL LITOACRIL FIX / ЛИТОКОЛ ЛИТОАКРИЛ ФИКС (2.5 кг)",
+                    "Клей плиточный LITOKOL K17 / ЛИТОКОЛ К17 (5 кг)",
+                    "Клей плиточный LITOKOL K17 / ЛИТОКОЛ К17 керамогранит (25 кг)",
+                    "Клей плиточный LITOKOL K17 FAST / ЛИТОКОЛ К17 ФАСТ керамогранит (25 кг)",
+                    "Клей плиточный LITOKOL K47 / ЛИТОКОЛ К47 (25 кг)",
+                    "Клей плиточный LITOKOL LITOFLEX K80 / ЛИТОКОЛ ЛИТОФЛЕКС К80 (5 кг)",
+                    "Клей плиточный LITOKOL LITOFLEX K80 / ЛИТОКОЛ ЛИТОФЛЕКС К80 серый (25 кг)",
+                    "Клей плиточный LITOKOL LITOFLEX K80 WHITE / ЛИТОКОЛ ЛИТОФЛЕКС К80 белый (25 кг)",
+                    "Клей плиточный LITOKOL LITOFLOOR K66 / ЛИТОКОЛ ЛИТОФЛОР К66 (25 кг)",
+                    "Клей плиточный LITOKOL LITOPLUS K55 / ЛИТОКОЛ ЛИТОПЛЮС К55 белый (5 кг)",
+                    "Клей плиточный LITOKOL LITOPLUS K55 / ЛИТОКОЛ ЛИТОПЛЮС К55 белый 25 кг",
+                    "Клей плиточный LITOKOL LITOSTONE K98 / ЛИТОКОЛ ЛИТОСТОУН К98 (25 кг)",
+                    "Клей плиточный LITOKOL LITOSTONE K98 / ЛИТОКОЛ ЛИТОСТОУН К98 (5 кг)",
+                    "Клей плиточный LITOKOL LITOSTONE K99 / ЛИТОКОЛ ЛИТОСТОУН К99 (25 кг)",
+                    "Клей плиточный LITOKOL SUPERFLEX K77 / ЛИТОКОЛ СУПЕРФЛЕКС К77 (25 кг)",
+                    "Клей плиточный LITOKOL X11 / ЛИТОКОЛ Х11 (5 кг)",
+                    "Клей плиточный LITOKOL X11 / ЛИТОКОЛ Х11 для бассейнов (25 кг)",
+                ],
+                [
+                    "Плиточный клей ВОЛМА ИНТЕРЬЕР Т10 (25 кг)",
+                    "Плиточный клей ВОЛМА КЕРАМИК ПЛЮС Т20 (25 кг)",
+                    "Плиточный клей ВОЛМА Мультиклей Т34 (25 кг)",
+                    "Плиточный цементный клей ВОЛМА КЕРАМИК Т14 (25 кг)",
+                ],
+                [
+                    "Клей плиточный Боларс АКВА плюс (25 кг)",
+                    "Клей плиточный Боларс Базовый универсальный (25 кг)",
+                    "Клей плиточный Боларс ГРАНИТ (25 кг)",
+                    "Клей плиточный Боларс КС строительный (18 кг)",
+                    "Клей плиточный Боларс КС строительный (9 кг)",
+                    "Клей плиточный Боларс ПЛЮС (25 кг)",
+                    "Клей плиточный Боларс Стандарт (25 кг)",
+                    "Клей плиточный Боларс Стандарт (5 кг)",
+                    "Клей плиточный Боларс ЭЛИТ (25 кг)",
+                ],
+                ["Армировочно-клеевая смесь Vetonit Weber Therm S100 / Ветонит Вебер Терм S100 (25 кг)",
+                    "Клей VETONIT EASY FIX / ВЕТОНИТ ИЗИ ФИКС (25 кг)",
+                    "Клей VETONIT OPTIMA / ВЕТОНИТ ОПТИМА (25 кг)",
+                    "Клей VETONIT PROFI PLUS / ВЕТОНИТ ПРОФИ ПЛЮС (25 кг)",
+                    "Клей для керамогранита и камня WEBER VETONIT Profi Plus (25 кг)/Вебер Ветонит Профи Плюс",
+                    "Клей для керамогранита, мрамора, гранита WEBER VETONIT Ultra Fix Серый (25 кг)/ВЕБЕР ВЕТОНИТ Ультра фикс",],
+                [
+                    "Плиточный клей Verfix Plus / Верфикс Плюс (25 кг)",
+                ],
+                ["Клеевой белый раствор Sopro FF 455 / Сопро ФФ 455 (25 кг)",
+                    "Клеевый раствор Sopro FBK 372 extra / Сопро ФБК 372 экстра (25 кг)",
+                    "Эластичный серый клеевый раствор Sopro FF 450 / Сопро ФФ 450 (25 кг)",],
+                ["Плиточный клей Plitonit B / Плитонит Б (25 кг)",],
+                [
+                    "Клей PERFEKTA / ПЕРФЕКТА ГИПСОЛИТ (30 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА МУЛЬТИФИКС (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА МУЛЬТИФИКС БЕЛЫЙ (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА МУЛЬТИФИКС ЗИМНИЙ (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА СМАРТФИКС (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА СМАРТФИКС PLUS (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА ХАРДФИКС (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА ХАРДФИКС БЕЛЫЙ (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА ХАРДФИКС ЗИМНИЙ для натурального камня (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА ХОЛДЕР (25 кг)",
+                    "Клей PERFEKTA / ПЕРФЕКТА ЭКОТЕК (25 кг)",
+                    "Клей для керамической плитки PERFEKTA / ПЕРФЕКТА СТАРТФИКС (25 кг)",
+                    "Штукатурно-клеевой состав PERFEKTA / ПЕРФЕКТА ТЕРМОТЕК (25 кг)",
+                    "Штуо-клеевой состав PERFEKTA / ПЕРФЕКТА ТЕРМОТЕК ЗИМНИЙ (25 кг)",
+                    "Эластичный клей PERFEKTA / ПЕРФЕКТА GREEN LINE ECOFLEX (25 кг)",
+                ],
+                [
+                    "Двухкомпонентный клей Granirapid белый A / Гранирапид А (22.5 кг)",
+                    "Двухкомпонентный клей Granirapid белый B / Гранирапид Б (5.5 кг)",
+                    "Двухкомпонентный клей Granirapid серый A / Гранирапид А (25 кг)",
+                    "Клей для плитки Mapei Adesilex P7 / Мапеи Адесилекс П7 (25 кг)",
+                    "Клей для плитки Mapei Adesilex P9 / Мапеи Адесилекс П9 серый (25 кг)",
+                    "Клей для плитки Mapei Kerabond T / Мапеи Керабонд Т белый (25 кг)",
+                    "Клей для плитки Mapei Kerabond T / Мапеи Керабонд Т серый (25 кг)",
+                    "Плиточный клей Mapei Keralastic T / Мапеи Кераластик Т белый (10 кг)",
+                    "Плиточный клей Mapei Keralastic T / Мапеи Кераластик Т белый (5 кг)",
+                    "Плиточный клей Mapei Keralastic T / Мапеи Кераластик Т серый (10 кг)",
+                    "Плиточный клей Mapei Keralastic T / Мапеи Кераластик Т серый (5 кг)",
+                    "Цементный состав Mapei Mapetherm AR2 / Мапеи Мапитерм АР2 (25 кг)",
+                ],
+                [
+                    "Клей KREISEL 101 / Крайзель 101 (25 кг)",
+                    "Клей KREISEL102 / КРАЙЗЕЛЬ 102 (25 кг)",
+                    "Плиточный клей Kreisel Mineralwolle-Armierungs-Gewebekleber / Крайзель 240 (25 кг)",
+                    "Плиточный клей Kreisel Mineralwolle-Klebemortel / Крайзель 230 (25 кг)",
+                ],
+                [
+                    "Клей для плитки ПЛЮС KolMix (25 кг)",
+                    "Клей для плитки СТАНДАРТ К7 KolMix (25 кг)",
+                    "Клей для плитки Элит K20 KolMix (25 кг)",
+                ],
+                [
+                    "Клей плиточный KNAUF FLEX / КНАУФ ФЛЕКС (25 кг)",
+                    "Клей плиточный KNAUF FLIESEN / КНАУФ ФЛИЗЕН (25 кг)",
+                    "Клей плиточный KNAUF FLIESEN PLUS / КНАУФ ФЛИЗЕН ПЛЮС (25 кг)",
+                    "Клей плиточный KNAUF MRAMOR / КНАУФ МРАМОР (25 кг)",
+                ],
+                [
+                    "Клей для напольной плитки крупного формата HENKEL CERESIT CM12 / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ12 (25 кг)",
+                    "Клей для плитки для внутренних работ CERESIT СМ 9 (25 кг)",
+                    "Плиточный клей HENKEL CERESIT CM11 plus / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ11 плюс (25 кг)",
+                    "Плиточный клей HENKEL CERESIT CM11 plus / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ11 плюс (5 кг)",
+                    "Плиточный клей HENKEL CERESIT CM14 Extra / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ14 Экстра (25 кг)",
+                    "Плиточный клей HENKEL CERESIT CM16 / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ16 (25 кг)",
+                    "Плиточный клей HENKEL CERESIT CM9 plus / ХЕНКЕЛЬ ЦЕРЕЗИТ СМ9 плюс (25 кг)",
+                    "Штукатурно-клеевая смесь Ceresit Thermo Universal / Церезит Термо Юниверсал (25 кг)",
+                ],
+                [
+                    "Плиточный клей GLIMS GreyFIX / Глимс ГрейФикс (25 кг)",
+                    "Плиточный клей GLIMS RealFix / Глимс РеалФикс (25 кг)",
+                    "Плиточный клей GLIMS WhiteFix / Глимс ВайтФикс (25 кг)",
+                ],
+                [
+                    "Клей плиточный DAUER Uniflex / ДАУЭР Унифлекс (25 кг)",
+                ],
+                ["Клей BERGAUF Granit / БЕРГАУФ Гранит (25 кг)",
+                    "Клей BERGAUF Isofix / БЕРГАУФ Изофикс (25 кг)",
+                    "Клей BERGAUF Keramik / БЕРГАУФ Керамик (25 кг)",
+                    "Клей BERGAUF Maximum / БЕРГАУФ Максимум (25 кг)",
+                    "Клей BERGAUF Mosaik / БЕРГАУФ Мозаик (25 кг)",
+                    "Клей быстротвердеющий BERGAUF Easy Fixer (25 кг)",
+                    "Клей усиленный BERGAUF Keramik Pro / БЕРГАУФ Керамик Про (25 кг)",
+                ],
+                [
+                    "Клей плиточный Baulux 50-14 / Баулюкс для бассейнов (25 кг)",
+                    "Клей плиточный Baulux 50-15 / Баулюкс для мозаики (25 кг)",
+                ],
+            ],
+            [
+                ["Гипсокартон влагостойкий (ГКЛВ. ВГКЛ) 2500х1200х9.5мм KNAUF / КНАУФ (ПЛУК)"]
+            ],
+            [
+                ["Пескобетон М-300 ЦСМ (40 кг)",],
+                [
+                    "Пескобетон М-300 Истра (мелкая фракция) (40 кг)",
+                    "Пескобетон М-300 Строймикс (крупная фракция / 40 кг)",
+                    "Сухая смесь М-200 Строймикс (40 кг)",
+                    "Цемент М-500 Строймикс Портландцемент Д0 (45 кг) ",
+                ],
+                [
+                    "Пескобетон М-300 РУСЕАН (40 кг)",
+                    "Пескобетон М-300 РУСЕАН LUIX крупная фракция (40 кг)",
+                    "Полимерцемент РУСЕАН М-600 (30 кг)",
+                    "РУСЕАН М-400 сухой бетон (40 кг)",
+                    "Сухая смесь РУСЕАН НЦ (25 кг)",
+                    "Цемент РУСЕАН НЦ (25 кг)",
+                ],
+                [
+                    "Кладочный раствор белый (010) ОСНОВИТ БРИКФОРМ МС11 (Т-111) (25 кг)",
+
+                ],
+                [
+                    "Пескобетон М-300 ЭКО (40 кг)",
+
+                ],
+                [
+                    "Глина шамотная (огнеупорная) Диана (10 кг)",
+                    "Глина шамотная (огнеупорная) Диана (20 кг)",
+                    "Глина шамотная (огнеупорная) Диана (5 кг)",
+                    "Пескобетон М-300 (50 кг)",
+                    "Пескобетон М-300 EUROmix / ЕВРОмикс (40 кг)",
+                    "Пескобетон М-300 СтройАшан (40 кг)",
+                    "Пескобетон М-300 Титан крупнофракционный (40 кг)",
+                    "Пескобетон М-300 Эталон (40 кг)",
+                    "Смесь М-150 универсальная (50 кг)",
+                    "Смесь универсальная М-150 Эталон (40 кг)",
+                    "Сухая смесь универсальная М-150 Титан (40 кг)",
+                    "Фибра полипропиленовая Russeal / Руссеал RS-12 мм",
+
+                ],
+                [
+                    "Пескобетон М-300 МКУ (Тула, крупная фракция) (40 кг)",
+
+                ],
+                ["Пескобетон М-300 Каменный цветок (40 кг)",
+                    "Пескобетон М-300 Каменный цветок особо прочный (40 кг)",
+                    "Смесь сухая универсальная Каменный цветок М-150 (40 кг)",],
+                [
+                    "Пескобетон М-300 ВИЛИС (40 кг)",
+
+                ],
+                ["Сухая смесь М-150 PERFEKTA / ПЕРФЕКТА Универсальная (50 кг)",
+                    "Сухая смесь М-150 PERFEKTA / ПЕРФЕКТА Штукатурная (50 кг)",
+                    "Сухая смесь М-200 PERFEKTA / ПЕРФЕКТА Монтажная (пескобетон) (50 кг)",],
+                ["Фибра полипропиленовая Oxiss (12 мм / 0.6 кг)",],
+                [
+                    "Бетонная смесь Mapei Mapefill 10 / Мапеи Мапефилл 10 (25 кг)",
+                    "Сухая смесь Mapei Mapecem Pronto / Мапеи Мапецем Пронто (25 кг)",
+                    "Сухая смесь Mapei Topcem Pronto / Мапеи Топцем Пронто (25 кг)",
+                ],
+
+                [
+                    "Пескобетон М-300 KolMix (40 кг)",
+                    "Сухая смесь универсальная М-150 KolMix (40 кг)",
+                ],
+                [
+                    "Пескобетон М-300 De Luxe / Де Люкс (50 кг)",
+
+                ],
+                [
+                    "Портландцемент Aalborg White cement / Олборг Вайт цемент (25 кг)",
+
+                ],
+            ],
+            [
+                [
+                    "Клей для пенобетона Unis / Юнис Униблок (25 кг)",
+                ],
+                [
+                    "Клей для газосиликата и пенобетона эталон TEPLIT",
+                ],
+                [
+                    "Клей монтажный Волма Термофасад (25 кг)",
+                    "Монтажный клей ВОЛМА БЛОК (25 кг)",
+                    "Монтажный клей ВОЛМА БЛОК Морозостойкий (25 кг)",
+                ],
+                [
+                    "Клей для блоков Боларс Монтажный (25 кг)",
+                    "Клей для блоков Боларс Монтажный морозостойкий (25 кг)",
+                    "Клей для систем теплоизоляции Боларс Теплоконтакт (25 кг)",
+                ],
+                [
+                    "Клей монтажный PERFEKTA / ПЕРФЕКТА Лайтблок (25 кг)",
+                    "Клей монтажный PERFEKTA / ПЕРФЕКТА Лайтблок ЗИМНИЙ (25 кг)",
+                ],
+                [
+                    "Клей монтажный DAUER Block / ДАУЭР Блок для газобетона (25 кг)",
+                ],
+                [
+                    "Клеевой состав Bonolit / Бонолит (25 кг)",
+                ],
+                [
+                    "Клей для ячеистых блоков BERGAUF Kleben Block (25 кг)",
+                ],
+            ],
+            [
+                [
+                    "Полимерная шпатлевка UNIS KRON / ЮНИС КРОН (25 кг)",
+                    "Шпатлевка UNIS LR Plus / ЮНИС ЛР Плюс (18 кг)",
+                    "Шпатлевка Unis финишная (20 кг)",
+                ],
+                [
+                    "Универсальная шпаклевка Фарвест СМЕО-02 (20 кг)",
+                ],
+                [
+                    "Шпатлевка СТАРАТЕЛИ базовая (20 кг)",
+                    "Шпатлевка СТАРАТЕЛИ фасадная (20 кг)",
+                    "Шпатлевка СТАРАТЕЛИ фасадно-финишная (20 кг)",
+                    "Шпатлевка СТАРАТЕЛИ финишная (12 кг)",
+                    "Шпатлевка СТАРАТЕЛИ финишная (20 кг)",
+                    "Шпатлевка СТАРАТЕЛИ финишная Плюс (20 кг)",
+                    "Шпатлёвка гипсовая выравнивающая СТАРАТЕЛИ  (20 кг)",
+                ],
+                [
+                    "Фасадная шпатлевка ТТ РУСЕАН (25 кг)",
+                ],
+                [
+                    "Шпаклевка гипсовая ОСНОВИТ ЭЛИСИЛК PG36 W (20 кг)",
+                    "Шпаклевка гипсовая серая ОСНОВИТ Эконсилк PG34 G (20 кг)",
+                    "Шпаклевка ОСНОВИТ БАЗСИЛК PC30 MG (20 кг)",
+                    "Шпаклевка ОСНОВИТ БАЗСИЛК PC30 MW (20 кг)",
+                    "Шпаклевка ОСНОВИТ ЭКОНСИЛК PG35 W (Т-35) (20 кг)",
+                    "Шпаклевка ОСНОВИТ ЭЛИСИЛК PP37 W (20 кг)",
+                    "Шпаклевка полимерная ОСНОВИТ ГЛЭДСИЛК Т-38 (20 кг)",
+                    "Шпаклевка цементная белая ОСНОВИТ БЕЛСИЛК PC32 W (20 кг)",
+                    "Шпаклевка цементная серая ОСНОВИТ ГРЕЙСИЛК PC31 G (20 кг)",
+                ],
+                [
+                    "Комплект ремонтный DANOGIPS Dano Box 1 0.85 л/1 кг.",
+                    "Шпатлевка Verrus Vershpatel LR PLUS / Веррус Вершпатель ЛР Плюс (25 кг)",
+                    "Шпатлевка полимерная DANOGIPS Dano Jet 5 (25 кг)/ДАНОГИПС",
+                    "Шпатлевка универсальная высокоэластичная Acryl-Putz MS30 (20 кг)",
+                    "Шпатлевка универсальная высокоэластичная Acryl-Putz MS30 (5 кг)",
+                    "Шпатлевка финишная полимерная DANOGIPS Dano Jet 9 (20 кг)/ДАНОГИПС",
+                ],
+                [
+                    "Шпаклевка финишная гипсовая для внутренних работ LITOKOL LITOGIPS FINISH / ЛИТОКОЛ ЛИТОГИПС ФИНИШ (15 кг)",
+                    "Шпаклевка финишная полимерная LITOKOL LITOFINISH FINE / ЛИТОКОЛ ЛИТОФИНИШ ФАЙН (20 кг)",
+                    "Шпаклевочная смесь на основе белого цемента LITOKOL LITOFINISH FASAD / ЛИТОКОЛ ЛИТОФИНИШ ФАСАД (25 кг)",
+                ],
+                [
+                    "Шпатлевка КЕРАФЛЕКС КР55 Элитная (20 кг)",
+                ],
+                [
+                    "Шпаклевка гипсовая Волма Полифин (19 кг)",
+                    "Шпаклевка гипсовая Волма Сатин (25 кг)",
+                    "Шпаклевка гипсовая Волма Стандарт (25 кг)",
+                    "Шпаклевка гипсовая Волма Финиш (25 кг)",
+                    "Шпаклевка гипсовая Волма ШОВ (25 кг)",
+                    "Шпаклевка цементная Волма Аквастандарт (22 кг)",
+                    "Шпатлёвка гипсовая Волма Унишов (25 кг)",
+                    "Шпатлёвка гипсовая ВОЛМА Шов (5 кг)",
+                    "Шпатлёвка цементная Волма База (22 кг)",
+                ],
+                [
+                    "Шпатлевка выравнивающая Боларс (25 кг)",
+                    "Шпатлевка гипсовая финишная Боларс для внутренних работ (15 кг)",
+                    "Шпатлевка фасадная финишная Боларс (20 кг)",
+                ],
+                [
+                    "Шпаклевка VETONIT FINISH KR / ВЕТОНИТ ФИНИШ КР (20 кг)",
+                    "Шпаклевка VETONIT FINISH LR PLUS / ВЕТОНИТ ФИНИШ ЛР ПЛЮС (20 кг)",
+                    "Шпаклевка VETONIT WEBER VH / Вебер Ветонит ВХ белая (20 кг)",
+                    "Шпаклевка VETONIT WEBER VH / Вебер Ветонит ВХ серая (20 кг)",
+                    "Шпатлевка VETONIT FINISH LR PLUS / ВЕТОНИТ ФИНИШ ЛР ПЛЮС (5 кг)",
+                    "Шпатлёвка WEBER VETONIT KR (5 кг)/Вебер Ветонит КР",
+                    "Шпатлёвка WEBER VETONIT LR Pasta (20 кг)/Вебер Ветонит ЛР Паста",
+                    "Шпатлёвка WEBER VETONIT LR Polymer (20 кг)/Вебер Ветонит ЛР Полимер",
+                    "Шпатлёвка WEBER VETONIT LR+  (25 кг)/Вебер Ветонит ЛР+",
+                    "Шпатлёвка WEBER VETONIT LR+  (5 кг)/Вебер Ветонит ЛР+",
+                ],
+                [
+                    "Шпаклевка PUFAS GLATT UND FULL SPACHTEL / ПУФАС ГЛЭТ АНД ФУЛ ШПАХТЕЛЬ №3 финишная толстослойная (20 кг)",
+                    "Шпаклевка PUFAS GLATT UND FULL SPACHTEL / ПУФАС ГЛЭТ АНД ФУЛ ШПАХТЕЛЬ №3 финишная толстослойная (5 кг)",
+                    "Шпатлевка гипсовая PUFAS FULL+FINISH / ПУФАС ФУЛЛ+ФИНИШ для внутренних работ (20 кг)",
+                    "Шпатлевка гипсовая PUFAS FULL+FINISH / ПУФАС ФУЛЛ+ФИНИШ для внутренних работ (5 кг)",
+                ],
+                [
+                    "Шпаклевка гипсовая PERFEKTA / ПЕРФЕКТА СУПЕРФИНИШ (20 кг)",
+                    "Шпаклевка гипсовая PERFEKTA / ПЕРФЕКТА ЭКОСТАРТ (20 кг)",
+                    "Шпаклевка гипсовая PERFEKTA / ПЕРФЕКТА ЭКОФИНИШ (20 кг)",
+                    "Шпаклевка гипсовая универсальная PERFEKTA / ПЕРФЕКТА ЭКОКРАФТ (20 кг)",
+                    "Шпаклевка полимерная суперфинишная PERFEKTA / ПЕРФЕКТА УЛЬТРАФАЙН (20 кг)",
+                    "Шпаклевка цементная PERFEKTA / ПЕРФЕКТА ГЛАЙД ПРЕМИУМ (20 кг)",
+                    "Шпаклевка цементная PERFEKTA / ПЕРФЕКТА ГЛАЙД СТАНДАРТ (20 кг)",
+                    "Шпаклевка цементная базовая PERFEKTA / ПЕРФЕКТА СТАРТ ГЛАЙД (25 кг)",
+                ],
+                [
+                    "Клеевая смесь Kreisel Armierungs-Gewebekleber / Крайзель 215 Коттедж (25 кг)",
+                ],
+                [
+                    "Шпатлевка KNAUF FUGEN / КНАУФ ФУГЕН (10 кг)",
+                    "Шпатлевка KNAUF FUGEN / КНАУФ ФУГЕН (25 кг)",
+                    "Шпатлевка KNAUF MULTI-FINISH / КНАУФ МУЛЬТИ-ФИНИШ (25 кг)",
+                    "Шпатлевка KNAUF Polymer Finish / КНАУФ Полимер Финиш (20 кг)",
+                    "Шпатлевка KNAUF UNIFLOTT / КНАУФ УНИФЛОТТ (25 кг)",
+                    "Шпатлевка KNAUF UNIFLOTT / КНАУФ УНИФЛОТТ (5 кг)",
+                ],
+                [
+                    "Шпаклевка HENKEL CERESIT CT127 / ХЕНКЕЛЬ ЦЕРЕЗИТ СТ127 (25 кг)",
+                    "Шпаклевка HENKEL CERESIT CT225 / ХЕНКЕЛЬ ЦЕРЕЗИТ СТ225 финишная (20 кг)",
+                ],
+                [
+                    "Шпатлевка GLIMS Finish Light Room + / ГЛИМС Лайт Рум + (20 кг)",
+                    "Шпатлевка GLIMS Finish-F / ГЛИМС Финиш-Ф",
+                ],
+                [
+                    "Универсальная шпаклевка BERGAUF Fugen Gips / БЕРГАУФ Фуген Гипс (25 кг)",
+                    "Шпаклевка BERGAUF Finish Plast / БЕРГАУФ Финиш Пласт (20 кг)",
+                    "Шпаклевка BERGAUF Finish Polymer / БЕРГАУФ Финиш Полимер (25 кг)",
+                    "Шпаклевка BERGAUF Finish Zement / БЕРГАУФ Финиш Цемент (20 кг)",
+                    "Шпаклевка BERGAUF Glatte Zement / БЕРГАУФ Глатте Цемент (25 кг)",
+                    "Шпаклевка гипсовая BERGAUF Finish Gips / БЕРГАУФ Финиш Гипс (18 кг)",
+                    "Шпаклевка на полимерной основе BERGAUF Finish Polymer / БЕРГАУФ Финиш Полимер (5 кг)",
+                    "Шпатлёвка гипсовая  BERGAUF Easy Soft (25 кг)",
+                    "Шпатлёвка гипсовая BERGAUF Praktik белая (30кг) ручн. и машин. нанесения",
+                ],
+
+
+
+
+
+            ],
+            [
+                [
+                    "Огнебиозащита /1 группа/ NORME COLOR FIRE BUCKLER 1 красный (10 л)",
+                    "Огнебиозащита /2 группа/ NORME COLOR FIRE BUCKLER 2 оранжевый (10 кг)",
+                    "Огнебиозащита /2 группа/ ОПТИМИСТ ОГНЕ-БИОЩИТ-2 бесцветный (10 л)",
+                    "Огнебиозащита /2 группа/ ОПТИМИСТ ОГНЕ-БИОЩИТ-2 изумрудный (10 л)",
+                    "Огнебиозащита /2 группа/ ОПТИМИСТ ОГНЕ-БИОЩИТ-2 изумрудный (5 л)",
+                    "Огнебиозащита SUPER HAUS / СУПЕР ХАУС (10 л)",
+                ],
+                [
+                    "Огнебиозащита /1 группа/ NEOMID 450 бесцветный/НЕОМИД (10 кг)",
+                    "Огнебиозащита /1 группа/ NEOMID 450 бесцветный/НЕОМИД (5 кг)",
+                    "Огнебиозащита /1 группа/ NEOMID 450 красный/НЕОМИД (10 кг)",
+                    "Огнебиозащита /2 группа/ NEOMID 450 бесцветный/НЕОМИД (10 кг)",
+                    "Огнебиозащита /2 группа/ NEOMID 450 бесцветный/НЕОМИД (5 кг)",
+                    "Огнебиозащита /2 группа/ NEOMID 450 красная/НЕОМИД (10 кг)",
+                ],
+
+            ],
+            [
+                [
+                    "Мастика битумная МБУ универсальная (16 кг)",
+                    "Мастика полиуретановая для гидроизоляции ГИПЕРДЕСМО Серая (25 кг)"
+                ],
+
+                [
+                    "Мастика клеящая НЕОМИД СУПЕРКОНТАКТ / NEOMID Supercontact (1,5 кг)",
+                    "Мастика клеящая НЕОМИД СУПЕРКОНТАКТ / NEOMID Supercontact (20 кг)"
+                ],
+
+                [
+                    "Масса гидроизоляционная HENKEL CERESIT CR 65 (25 кг)"
+                ],
+            ],
+            [
+
+                [
+                    "Наливной пол Unis / Юнис Горизонт Универсальный Быстротвердеющий (20 кг)",
+                    "Пол наливной финишный ЮНИС Горизонт NIVELIR (20 кг)",
+                    "Ровнитель для пола базовый Unis Горизонт Hydro (25 кг)",
+                    "Цементная стяжка Unis / Юнис Горизонт (25 кг)",
+                ],
+                [
+                    "Наливной пол СТАРАТЕЛИ быстротвердеющий (25 кг)",
+                    "Наливной пол СТАРАТЕЛИ практичный (20 кг)",
+                    "Наливной пол СТАРАТЕЛИ толстослойный (25 кг)",
+                    "Наливной пол СТАРАТЕЛИ тонкий (25 кг)",
+                    "Пол наливной высокопрочный СТАРАТЕЛИ (25 кг)",
+                    "Стяжка пола высокопрочная Старатели С-10 (25 кг)",
+                ],
+                [
+                    "Гипсовый пол Русеан Нивелир (20 кг)",
+                ],
+                [
+                    "Наливной пол ОСНОВИТ НИПЛАЙН FC42 (Т-42) (25 кг)",
+                    "Наливной пол ОСНОВИТ СКОРЛАЙН FK 48 R (20 кг)",
+                    "Наливной пол ОСНОВИТ СКОРЛАЙН FK45 R (Т-45) быстротвердеющий (20 кг)",
+                    "Наливной пол тонкослойный ОСНОВИТ Ровилайн FK46 (20 кг)",
+                    "Ровнитель для пола ОСНОВИТ НИПЛАЙН FC47 (25 кг)",
+                    "Стяжка пола высокопрочная (ровнитель) ОСНОВИТ СТАРТОЛАЙН FC41 H (Т-41) (25 кг)",
+                    "Стяжка пола легкая ОСНОВИТ СТАРТОЛАЙН FC43 L (25 кг)",
+                    "Стяжка пола ОСНОВИТ Стартолайн FC44 M (25 кг)",
+                    "Тонкослойный быстротвердеющий наливной пол ОСНОВИТ РОВИЛАЙН Т-46 (20 кг)",
+                ],
+                [
+                    "Высокотекучий безусадочный подливочный раствор LITOKOL LITORAPID FLUID / ЛИТОКОЛ ЛИТОРАПИД ФЛЮИД (25 кг)",
+                    "Гипсовый толстослойный ровнитель для пола LITOKOL LITOLIV S100 / ЛИТОКОЛ ЛИТОЛИВ С100 (25 кг)",
+                    "Ровнитель для пола высокопрочный LITOKOL LITOLIV BASIS / ЛИТОКОЛ ЛИТОЛИВ БАЗИС (25 кг)",
+                    "Самовыравнивающаяся смесь LITOKOL LITOLIV S30 / ЛИТОКОЛ ЛИТОЛИВ С30 (25 кг)",
+                    "Самовыравнивающаяся смесь LITOKOL LITOLIV S5 / ЛИТОКОЛ ЛИТОЛИВ С5 (25 кг)",
+                ],
+                [
+                    "Наливной пол ВОЛМА НИВЕЛИР ЭКСПРЕСС (20 кг)",
+                    "Ровнитель грубый Волма базовая (25 кг)",
+                ],
+                [
+                    "Наливной пол Боларс СВ-210 Оптим (20 кг)",
+                    "Наливной пол цементный высокопрочный Боларс СВ-1030 (25 кг)",
+                ],
+                [
+                    "Наливной пол VETONIT 3000 / ВЕТОНИТ 3000 (20 кг)",
+                    "Наливной пол VETONIT 3000 / ВЕТОНИТ 3000 (АРЗАМАС) (25 кг)",
+                    "Наливной пол VETONIT 5000 / ВЕТОНИТ 5000 (25 кг)",
+                    "Наливной пол VETONIT 5000 / ВЕТОНИТ 5000 (АРЗАМАС) (25 кг)",
+                    "Наливной пол Weber Vetonit Fast 4000 / Вебер Ветонит Фаст 4000 20 кг",
+                    "Наливной пол Weber.Vetonit 4100 / Вебер Ветонит 4100 (20 кг)",
+                ],
+                [
+                    "Наливной пол PRO Universal / Юниверсал ПРО (25 кг)",
+                ],
+                [
+                    "Ровнитель для бетонных полов Plitonit Universal / Плитонит Юниверсал (20 кг)",
+                ],
+                [
+                    "Быстротвердеющий наливной пол PERFEKTA / ПЕРФЕКТА МУЛЬТИСЛОЙ (20 кг)",
+                    "Быстротвердеющий наливной пол PERFEKTA / ПЕРФЕКТА Флэтслой (20 кг)",
+                    "Легкий армированный наливной пол PERFEKTA / ПЕРФЕКТА ЛАЙТСЛОЙ (20 кг)",
+                    "Наливной пол PERFEKTA GREEN LINE ECOFLOOR / Перфекта Грин Лайн ЭКОфло (25 кг)",
+                    "Ровнитель высокопрочный PERFEKTA / ПЕРФЕКТА НОРМАСЛОЙ (20 кг)",
+                    "Ровнитель высокопрочный PERFEKTA / ПЕРФЕКТА ПРОФИСЛОЙ (25 кг)",
+                    "Ровнитель толстослойный быстротвердеющий PERFEKTA / ПЕРФЕКТА БЕТАСЛОЙ (25 кг)",
+                    "Стяжка пола толстослойная усиленная PERFEKTA / ПЕРФЕКТА ФИБРОСЛОЙ (25 кг)",
+                    "Стяжка пола толстослойная усиленная PERFEKTA / ПЕРФЕКТА ФИБРОСЛОЙ ЗИМНЯЯ (25 кг)",
+                ],
+                [
+                    "Стяжка цементная легкая KNAUF UBO / КНАУФ УБО (25 кг)",
+                ],
+                [
+                    "Наливной пол Henkel Ceresit CN173 / Хенкель Церезит CN173",
+                    "Наливной пол Henkel Ceresit CN68 / Хенкель Церезит СН68 (25 кг)",
+                    "Универсальная самовыравнивающаяся смесь HENKEL CERESIT CN175 SUPER / ХЕНКЕЛЬ ЦЕРЕЗИТ CN175 СУПЕР (25 кг)",
+                    "Универсальная смесь HENKEL CERESIT CN175 Plus / ХЕНКЕЛЬ ЦЕРЕЗИТ CN175 Плюс (25 кг)",
+                ],
+                [
+                    "Наливной пол GLIMS S-Base+ / Глимс С-Бэйс+ (20 кг)",
+                    "Наливной пол Glims S-LEVEL / Глимс С-Лэвэл быстротвердеющий (20 кг)",
+                ],
+                [
+                    "Наливной пол DAUER Eсoline / ДАУЭР Эколайн быстротвердеющий (20 кг)",
+                ],
+                [
+                    "Наливной пол BERGAUF Boden Inter Gross / БЕРГАУФ Боден Интер Гросс (20 кг)",
+                    "Наливной пол BERGAUF Boden Turbo / БЕРГАУФ Боден Турбо (20 кг)",
+                    "Наливной пол BERGAUF Boden Zement Final / БЕРГАУФ Боден Цемент Файнал самовыравнивающийся (25 кг)",
+                    "Наливной пол BERGAUF Boden Zement Medium / БЕРГАУФ Боден Цемент Медиум (25 кг)",
+                    "Наливной пол BERGAUF Easy Boden / БЕРГАУФ Изи Боден самонивелирующийся (25 кг)",
+                    "Пол для внутренних и наружных работ BERGAUF Erste Grund  м200, (25 кг )",
+                    "Пол наливной BERGAUF Easy Boden (25 кг.)",
+                    "Ровнитель на цементной основе BERGAUF Boden Zement Gross / БЕРГАУФ Боден Цемент Гросс (25 кг)",
+                    "Смесь для предварительного выравнивания пола BERGAUF Base / БЕРГАУФ Бэйс (25 кг)",
+                ],
+
+            ],
+            [
+                [
+                    "Штукатурка  UNIS / ЮНИС Короед-Декор (25 кг)",
+                    "Штукатурка ЮНИС ТЕПЛОН белый (30 кг)",
+                    "Штукатурка ЮНИС ТЕПЛОН влагостойкий (25 кг)",
+                    "Штукатурно-клеевая смесь UNIS / ЮНИС Теплоклей (25 кг)",
+                ],
+                [
+                    "Штукатурка Старатели MIXTER / МИКСТЕР (30 кг)",
+                    "Штукатурка СТАРАТЕЛИ гипсовая серая (30 кг)",
+                    "Штукатурка Старатели Оптимум (30 кг)",
+                    "Штукатурка СТАРАТЕЛИ универсальная цементно-песчаная (25 кг)",
+                ],
+                [
+                    "Гипсовая штукатурка РУСЕАН Термопласт / Termoplast белая (30 кг)",
+                    "Штукатурная смесь влагостойкая РУСЕАН PLASTER-S / ПЛАСТЕР С (30 кг)",
+                    "Штукатурная смесь РУСЕАН ПЛАСТЕР (30 кг)",
+                ],
+                [
+                    "Цементная выравнивающая штукатурка ОСНОВИТ Стартвэлл РС21 H (25 кг)",
+                    "Штукатурка гипсовая ОСНОВИТ ГИПСВЭЛЛ PG25 W белая (30 кг)",
+                    "Штукатурка гипсовая ОСНОВИТ ГИПСВЭЛЛ PG25 серая (30 кг)",
+                    "Штукатурка гипсовая ОСНОВИТ ГИПСВЭЛЛ PG26 M (30 кг)",
+                    "Штукатурка гипсовая ОСНОВИТ ГИПСВЭЛЛ PG26MW белая (30 кг)",
+                    "Штукатурка декоративная Основит ЭКСТЕРВЭЛЛ КОРОЕД серая (фракция 2.5 / 25 кг)",
+                    "Штукатурка лёгкая ОСНОВИТ ФЛАЙВЭЛЛ PC24/1 ML (25 кг)",
+                    "Штукатурка фасадная ОСНОВИТ СТАРТВЭЛЛ РС21 М (25 кг)",
+                    "Штукатурка фасадная ОСНОВИТ Стартвэлл РС22 Н (25 кг)",
+                    "Штукатурка цементная тонкослойная ОСНОВИТ СЛИМВЭЛЛ PC23 (Т-23) (25 кг)",
+                ],
+                [
+                    "Гипс белый Г-5 Диана (3 кг)",
+                    "Гипс белый Г-5 Диана (5 кг)",
+                    "Гипс Г-7 Артель (3 кг)",
+                    "Гипс Г-7 Артель (5 кг)",
+                    "Штукатурка гипсовая EK TG100 ручного и машинного нанесения (30 кг)",
+                    "Штукатурка гипсовая Стройбриг ГИПЛАН PG26MW белая (30 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T001 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T150 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T187 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T207 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T231 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T256 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T301 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T318 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T334 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T369 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T389 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T442 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T442 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T484 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T487 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T529 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T566 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T618 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T629 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T641 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T647 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T677 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T716 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T756 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T7565 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T758 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T762 (15 кг)",
+                    "Штукатурка декоративная акриловая Bayramix Baytera T772 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L100 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L120 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L20 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L210 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L260 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L380 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L430 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L440 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L470 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L480 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L490 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L510 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L530 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L590 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L600 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L670 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L700 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L760 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L761 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L830 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L840 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L910 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L911 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L950 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L960 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L990 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Luxury L991 (20 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 034 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 035 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 115 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 125 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 151 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 179 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 182 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 192 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 208 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 213 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 214 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 248 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 257 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 278 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 324 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 365 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 442 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 448 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 483 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 497 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 513 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 521 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 568 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 600 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 625 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 628 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 636 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 639 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 664 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 721 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 849 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 867 (15 кг)",
+                    "Штукатурка декоративная мраморная Bayramix Mineral 908 (15 кг)",
+                ],
+                [
+                    "Базовый штукатурный состав LITOKOL LITOTHERM Base / ЛИТОКОЛ ЛИТОТЕРМ Бэйс (25 кг)",
+                    "Декоративная акриловая штукатурка LITOKOL LITOTHERM Factura Acril / ЛИТОКОЛ ЛИТОТЕРМ Фактура Акрил 1.5 мм (25 кг)",
+                    "Декоративная акриловая штукатурка LITOKOL LITOTHERM Factura Acril / ЛИТОКОЛ ЛИТОТЕРМ Фактура Акрил 2.0 мм (25 кг)",
+                    "Декоративная акриловая штукатурка LITOKOL LITOTHERM Factura Acril / ЛИТОКОЛ ЛИТОТЕРМ Фактура Акрил 2.5 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica / ЛИТОКОЛ ЛИТОТЕРМ Графика 1.8 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica / ЛИТОКОЛ ЛИТОТЕРМ Графика 2.5 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Acril / ЛИТОКОЛ ЛИТОТЕРМ Графика Акрил 1.5 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Acril / ЛИТОКОЛ ЛИТОТЕРМ Графика Акрил 2.0 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Acril / ЛИТОКОЛ ЛИТОТЕРМ Графика Акрил 2.5 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Sil / ЛИТОКОЛ ЛИТОТЕРМ Графика Сил 1.5 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Sil / ЛИТОКОЛ ЛИТОТЕРМ Графика Сил 2.0 мм (25 кг)",
+                    "Декоративная минеральная штукатурка LITOKOL LITOTHERM Grafica Sil / ЛИТОКОЛ ЛИТОТЕРМ Графика Сил 2.5 мм (25 кг)",
+                    "Декоративная силиконовая штукатурка LITOKOL LITOTHERM Factura Sil / ЛИТОКОЛ ЛИТОТЕРМ Фактура Сил 1.5 мм (25 кг)",
+                    "Декоративная силиконовая штукатурка LITOKOL LITOTHERM Factura Sil / ЛИТОКОЛ ЛИТОТЕРМ Фактура Сил 2.0 мм (25 кг)",
+                    "Декоративная силиконовая штукатурка LITOKOL LITOTHERM Factura Sil / ЛИТОКОЛ ЛИТОТЕРМ Фактура Сил 2.5 мм (25 кг)",
+                    "Декоративная штукатурка LITOKOL LITOTHERM Factura / ЛИТОКОЛ ЛИТОТЕРМ Фактура (25 кг)",
+                    "Цементно-штукатурный состав стандартного схватывания LITOKOL LITOPLAN / ЛИТОКОЛ ЛИТОПЛАН (25 кг)",
+                    "Цементный раствор LITOKOL LITOPLAN RAPID / ЛИТОКОЛ ЛИТОПЛАН РАПИД (25 кг)",
+                    "Штукатурная смесь LITOKOL LITOGIPS / ЛИТОКОЛ ЛИТОГИПС (30 кг)",
+                ],
+                [
+                    "Штукатурка ВОЛМА ГИПС АКТИВ (машинного нанесения, гипсовая) (30 кг)",
+                    "Штукатурка ВОЛМА Пласт (30 кг)",
+                    "Штукатурка ВОЛМА СЛОЙ Универсальный (30 кг)",
+                    "Штукатурка ВОЛМА ХОЛСТ серая (30 кг)",
+                    "Штукатурка гипсовая ВОЛМА Stroiver Механик (30 кг)",
+                    "Штукатурка гипсовая ВОЛМА ДОМ МОЙ (25 кг)",
+                    "Штукатурка гипсовая ВОЛМА Слой Светлый (5 кг)",
+                    "Штукатурка цементная АКВАПЛАСТ ВОЛМА (25 кг)",
+                    "Штукатурка цементная ВОЛМА АКВАСЛОЙ (25 кг)",
+                ],
+                [
+                    "Штукатурная смесь ВИЛИС гипсовая (30 кг)",
+                ],
+                [
+                    "Штукатурка гипсовая Боларс серая (30 кг)",
+                    "Штукатурка декоративная Боларс Crystal (25 кг)",
+                    "Штукатурка декоративная Боларс Mineral-s Odysseus 150 (25 кг)",
+                    "Штукатурка декоративная Боларс Mineral-s Odysseus 200 (25 кг)",
+                    "Штукатурка декоративная Боларс Mineral-s Odysseus 250 (25 кг)",
+                    "Штукатурка декоративная Боларс короед белая  фракция 1.5  (25 кг)",
+                    "Штукатурка декоративная Боларс короед белая  фракция 2.5  (25 кг)",
+                    "Штукатурка фасадная Боларс серая (25 кг)",
+                    "Штукатурка фасадная для машинного нанесения Боларс (25 кг)",
+                ],
+                [
+                    "Штукатурка Weber Vetonit 414 Unirender / Вебер Ветонит 414 Унирендер (25 кг)",
+                    "Штукатурка WEBER VETONIT ТТ (25 кг)/Вебер Ветонит ТТ",
+                    "Штукатурка универсальная Ветонит Вебер ТТ 40 / WEBER VETONIT TT 40 (25 кг)",
+                ],
+                [
+                    "Цементно-песчаная штукатурка Вербанд / VERBUND (25 кг)",
+                ],
+                [
+                    "Штукатурка  PRO SR-13 / ПРО СР-13 Короед (25 кг)",
+                    "Штукатурка  PRO SR-17 / ПРО СР-17 для ручного и машинного нанесения, белая (30 кг)",
+                    "Штукатурка гипсовая PRO Universal (30 кг)",
+                ],
+                [
+                    "Штукатурка Plitonit T1+ / Плитонит Т1+ (25 кг)",
+                ],
+                [
+                    "Штукатурка гипсовая PERFEKTA / ПЕРФЕКТА ГИПСТАР СЕРАЯ (30 кг)",
+                    "Штукатурка гипсовая для ручного нанесения PERFEKTA / ПЕРФЕКТА ГИПСТАР БЕЛАЯ (30 кг)",
+                    "Штукатурка гипсовая лёгкая PERFEKTA / ПЕРФЕКТА GREEN LINE ECOSIDE (30 кг)",
+                    "Штукатурка гипсовая лёгкая Perfekta / Перфекта Смартгипс серая (30 кг)",
+                    "Штукатурка гипсовая машинного и ручного нанесения PERFEKTA / ПЕРФЕКТА ГИПСТАР БЕЛАЯ (30 кг)",
+                    "Штукатурка гипсовая машинного и ручного нанесения PERFEKTA / ПЕРФЕКТА ГИПСТАР СЕРАЯ (30 кг)",
+                    "Штукатурка декоративная PERFEKTA / ПЕРФЕКТА КОРОЕД (25 кг)",
+                    "Штукатурка декоративная PERFEKTA / ПЕРФЕКТА ШУБА (25 кг)",
+                    "Штукатурка фасадная PERFEKTA / ПЕРФЕКТА выравнивающая (40 кг)",
+                    "Штукатурка фасадная PERFEKTA / ПЕРФЕКТА выравнивающая зимняя (40 кг)",
+                    "Штукатурка фасадная легкая машинного нанесения PERFEKTA / ПЕРФЕКТА ФРОНТПРО ЛАЙТ (30 кг)",
+                    "Штукатурка фасадная легкая машинного нанесения PERFEKTA / ПЕРФЕКТА ФРОНТПРО ЛАЙТ ЗИМНЯЯ (30 кг)",
+                    "Штукатурка фасадная облегченная машинного нанесения PERFEKTA / ПЕРФЕКТА ФРОНТПРО (30 кг)",
+                    "Штукатурка фасадная усиленная PERFEKTA / ПЕРФЕКТА ТОНКОСЛОЙНАЯ (25 кг)",
+                ],
+                [
+                    "Цементный раствор Mapei Mapefill / Мапеи Мапефилл (25 кг)",
+                    "Цементный состав Mapei Planitop РемонтФиниш / Мапеи Планитоп (5 кг)",
+                    "Штукатурная смесь Mapei Mapegrout Thixotropic / Мапеи Мапеграут Тиксотропик (25 кг)",
+                    "Штукатурная смесь Mapei Nivoplan Plus / Мапеи Нивоплан Плюс (25 кг)",
+                ],
+                [
+                    "Декоративная минеральная штукатурка Kreisel Edelputz BR 082 / Крайзель (25 кг)",
+                    "Декоративная минеральная штукатурка Kreisel Edelputz DR 81 / Крайзель (25 кг)",
+                    "Штукатурка KREISEL Gips Maschinenputz 651 / КРАЙЗЕЛЬ 651 (30 кг)",
+                    "Штукатурка KREISEL Putzmortel 560 / КРАЙЗЕЛЬ Путзмортел 560 (25 кг)",
+                ],
+                [
+                    "Штукатурка KNAUF DIAMANT / КНАУФ ДИАМАНТ КОРОЕД (25 кг)",
+                    "Штукатурка Knauf Diamant / Кнауф Диамант шуба 1.5 мм (25 кг)",
+                    "Штукатурка Knauf Diamant / Кнауф Диамант шуба 3 мм (25 кг)",
+                    "Штукатурка KNAUF GOLDBAND / КНАУФ ГОЛЬДБАНД (30 кг)",
+                    "Штукатурка KNAUF GRUNBAND / КНАУФ ГРЮНБАНД (25 кг)",
+                    "Штукатурка Knauf MP 75 белая / Кнауф МП 75 (30 кг)",
+                    "Штукатурка KNAUF ROTBAND / КНАУФ РОТБАНД Белый (30 кг)",
+                    "Штукатурка KNAUF ROTBAND / КНАУФ РОТБАНД Серый (30 кг)",
+                    "Штукатурка KNAUF ROTBAND / КНАУФ РОТБАНД Серый (5 кг)",
+                    "Штукатурка KNAUF UNTERPUTZ / КНАУФ УНТЕРПУТЦ фасадная (25 кг)",
+                    "Штукатурка гипсовая машинного нанесения Knauf MP 75 / Кнауф МП 75 (30 кг)",
+                    "Штукатурка цементная KNAUF Адгезив / КНАУФ Адгезив (25кг)",
+                    "Штукатурка цокольная KNAUF Зокельпутц УП 310 (25 кг)",
+                    "Штукатурно-клеевая смесь KNAUF SEVENER / КНАУФ СЕВЕНЕР (25 кг)",
+                ],
+                [
+                    "Декоративная штукатурка HENKEL CERESIT CT35 / ХЕНКЕЛЬ ЦЕРЕЗИТ СТ35 короед (25 кг)",
+                    "Клей-штукатурка HENKEL CERESIT CT85 / ХЕНКЕЛЬ ЦЕРЕЗИТ СТ85 (25 кг)",
+                    "Штукатурка и ремонтная шпатлёвка HENKEL CERESIT CT 29 (25 кг)",
+                ],
+                [
+                    "Штукатурка гипсовая Glims TS-70 / Глимс TS-70 (30 кг)",
+                ],
+                [
+                    "Штукатурка гипсовая Forman 11 / Формен 11 (28 кг)",
+                ],
+                [
+                    "Штукатурка гипсовая DAUER Gipsart / ДАУЭР Гипсарт серая (30 кг)",
+                ],
+                [
+                    "Штукатурка BERGAUF EASY PLASTER / БЕРГАУФ Изи Пластер (25 кг)",
+                    "Штукатурка гипсовая BERGAUF Bau Putz Gips / БЕРГАУФ Бау Путц Гипс для стен и потолков (30 кг)",
+                    "Штукатурка гипсовая BERGAUF Easy Band / БЕРГАУФ Изи Банд (30 кг)",
+                    "Штукатурка гипсовая BERGAUF Prima Putz Gips / БЕРГАУФ Прима Путц Гипс премиум (30 кг)",
+                    "Штукатурка гипсовая лёгкая BERGAUF Praktik (30 кг)",
+                    "Штукатурка декоративная BERGAUF DEKOR / БЕРГАУФ Декор Короед (25 кг)",
+                    "Штукатурка цементная BERGAUF Bau Putz Zement / БЕРГАУФ Бау Путц Цемент для фасадов (25 кг)",
+                    "Штукатурка цементная для наружных работ BERGAUF Praktik (30 кг)",
+                    "Штукатурка цементная для фасада и цоколя BERGAUF Unter Bau (25 кг)",
+                ],
+            ],
+            [
+                [
+                    "Смесь М-200 кладочная (50 кг)"
+                ],
+
+                [
+                    "Гипс строительный KNAUF Шнельгипс (2 кг)/КНАУФ"
+                ],
+                [
+                    "Клей плиточный BERGAUF Standart (25 кг)",
+                    "Штукатурка цементная для внутренних работ BERGAUF Praktik (30 кг)"
+                ]
+            ],
+            [
+
+                [
+                    "Обновляющее средство СЕНЕЖ ЭФФО (10 л)",
+                ],
+                [
+                    "Грунтовка для защиты древесины Pinotex Base / Пинотекс База (1 л)",
+                    "Грунтовка для защиты древесины Pinotex Base / Пинотекс База (10 л)",
+                    "Грунтовка для защиты древесины Pinotex Base / Пинотекс База (2.7 л)",
+                    "Декоративная пропитка Pinotex Interior / Пинотекс Интерьер (1 л)",
+                    "Декоративная пропитка Pinotex Interior / Пинотекс Интерьер (10 л)",
+                    "Декоративная пропитка Pinotex Interior / Пинотекс Интерьер (2.7 л)",
+                    "Деревозащитная пропитка Pinotex Natural / Пинотекс Натурал (1 л)",
+                    "Деревозащитная пропитка Pinotex Natural / Пинотекс Натурал (10 л)",
+                    "Деревозащитная пропитка Pinotex Natural / Пинотекс Натурал (2.7 л)",
+                ],
+                [
+                    "Защитная декоративная пропитка для древесины Neomid / Неомид (2,3 л) клен",
+                    "Защитная декоративная пропитка для древесины глубокопроникающая Neomid / Неомид (2,7 л)",
+                    "Масло деревозащитное для террас Neomid / Неомид (2 л)",
+                ],
+
+
+            ],
+        ];
+
+
+
+
+        let Product_Type = document.getElementById("Product_Type");
+        let Product = document.getElementById("Product");
+        let TypeNumber = Product_Type.selectedIndex;
+        console.log(Product_Type.selectedIndex);
+
+
+        Product_Type.addEventListener('change', (event) => {
+            /*document.getElementById("form2").style.display="none";*/
+            ProductType = event.target.options[event.target.options.selectedIndex].text;
+            TypeNumber = event.target.options.selectedIndex;
+            let size = Product.childNodes.length;
+            for (let index = 0; index < size; index++) {
+
+                Product.firstChild.remove();
+            }
+
+
+
+
+            for (let j = 0; j < type[TypeNumber].length; j++) {
+                let optGroup = document.createElement('optgroup');
+                Product.appendChild(optGroup);
+                optGroup.label = type[TypeNumber][j];
+
+                for (var i = 0; i < product[TypeNumber][j].length; i++) {
+
+                    let opt = document.createElement('option');
+                    opt.value = i;
+                    opt.innerHTML = product[TypeNumber][j][i];
+                    optGroup.appendChild(opt);
+                }
+
+            }
+
+
+
+
+        });
+
+        let button = document.getElementById('button1');
+        button.addEventListener('click', (e) => {
+            document.getElementById("formArea").textContent = document.getElementById("area").value;
+            document.getElementById("formH").textContent = document.getElementById("h").value;
+            document.getElementById("mass").textContent = Math.round(document.getElementById("area").value * document.getElementById("h").value / 1, 4);
+            let mass = +document.getElementById("mass").textContent;
+            let massPerUniqArr = document.getElementById("Product").options[document.getElementById("Product").selectedIndex].text.match(/[+-]?\d+(\.\d+)?/g);
+            let massPerUniq = +massPerUniqArr[massPerUniqArr.length - 1];
+            document.getElementById("massPerUniq").textContent = massPerUniq;
+            if (mass % massPerUniq == 0) {
+                document.getElementById("count").textContent = mass / massPerUniq;
+            }
+            else {
+                document.getElementById("count").textContent = Math.floor(mass / massPerUniq) + 1;
+            }
+
+            document.getElementById("cost").textContent = document.getElementById("count").textContent * 410;
+        });
+
+    </script>
+
 </body>
 
 </html>
